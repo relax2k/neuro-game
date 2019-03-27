@@ -347,4 +347,7 @@ compile_commands.json
 
 # Qt Creator backups
 
+# Qt Creator build
+Debug
+
 # End of https://www.gitignore.io/api/qt,latex,qtcreator
