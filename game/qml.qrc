@@ -4,5 +4,6 @@
         <file>GameArea.qml</file>
         <file>MainMenu.qml</file>
         <file>Ball.qml</file>
+        <file>Block.qml</file>
     </qresource>
 </RCC>
