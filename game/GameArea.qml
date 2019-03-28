@@ -8,6 +8,11 @@ import QtQuick 2.6 as QQ2
 Entity {
     id: root
 
+    property alias gameRoot: root
+    property alias timerInterval: timer.interval
+    property int initialTimeInterval: 80
+
+
     Entity {
         id: sun
         components: [
