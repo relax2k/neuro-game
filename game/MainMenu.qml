@@ -30,6 +30,10 @@ Item {
             text: "Singleplayer"
             font.pointSize: 30
             width: parent.width
+            onClicked: {
+                mainMenuButton.visible = true
+                mainMenu.visible = false
+            }
         }
 
         Button {

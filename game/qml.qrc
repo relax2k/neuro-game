@@ -6,5 +6,6 @@
         <file>Ball.qml</file>
         <file>Block.qml</file>
         <file>models/box.obj</file>
+        <file>MainMenuButton.qml</file>
     </qresource>
 </RCC>
