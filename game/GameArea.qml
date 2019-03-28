@@ -46,5 +46,20 @@ Entity {
         position: Qt.vector3d(camera.x, camera.y, 2.0)
     }
 
-    components: [frameFraph]
+    KeyboardDevice {
+        id: keyboardController
+    }
+
+    InputSettings {
+        id: inputSettings
+    }
+
+    KeyboardHandler {
+        id: input
+        sourceDevice: keyboardController
+        focus: true
+        onPressed: { }
+    }
+
+    components: [frameFraph, input]
 }
