@@ -1,6 +1,11 @@
 # Created by https://www.gitignore.io/api/qt,latex,qtcreator
 # Edit at https://www.gitignore.io/?templates=qt,latex,qtcreator
 
+### Custom ###
+*.pdf
+*.png
+*.mtl
+
 ### LaTeX ###
 ## Core latex/pdflatex auxiliary files:
 *.aux
