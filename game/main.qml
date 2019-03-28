@@ -28,6 +28,6 @@ Item {
 
 
     MainMenu {
-        visible: false
+        visible: true
     }
 }
