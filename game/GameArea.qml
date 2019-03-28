@@ -41,10 +41,12 @@ Entity {
         }
     }
 
+
     Ball {
         id: ball
         position: Qt.vector3d(camera.x, camera.y, 2.0)
     }
+
 
     KeyboardDevice {
         id: keyboardController
@@ -60,6 +62,20 @@ Entity {
         focus: true
         onPressed: { }
     }
+
+
+    QQ2.Component.onCompleted: {
+        console.log("Start game...");
+        timer.start()
+    }
+
+    QQ2.Timer {
+        id: timer
+        interval: initialTimeInterval
+        repeat: true
+        onTriggered: {}
+    }
+
 
     components: [frameFraph, input]
 }
