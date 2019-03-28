@@ -33,7 +33,7 @@ Entity {
         aspectRatio: 16/9
         nearPlane : 0.1
         farPlane : 1000.0
-        position: Qt.vector3d( x, y, 33.0 )
+        position: Qt.vector3d( x + 10, y + 10, 33.0 )
         upVector: Qt.vector3d( 0.0, 1.0, 0.0 )
         viewCenter: Qt.vector3d( x, y, 0.0 )
     }
@@ -41,7 +41,7 @@ Entity {
     RenderSettings {
         id: frameFraph
         activeFrameGraph: ForwardRenderer {
-            clearColor: Qt.rgba(0, 0, 0, 1)
+            clearColor: Qt.rgba(0.05, 0.55, 0.95, 1)
             camera: camera
         }
     }
@@ -50,6 +50,11 @@ Entity {
     Ball {
         id: ball
         position: Qt.vector3d(camera.x, camera.y, 2.0)
+    }
+
+    Block {
+        id: block
+        position: Qt.vector3d(camera.x + 2, camera.y - 2, -20.0)
     }
 
 
