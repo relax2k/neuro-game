@@ -28,6 +28,12 @@ Item {
 
 
     MainMenu {
+        id: mainMenu
         visible: true
+    }
+
+    MainMenuButton {
+        id: mainMenuButton
+        visible: false
     }
 }

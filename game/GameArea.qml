@@ -6,6 +6,7 @@ import QtQuick 2.6 as QQ2
 
 
 Entity {
+
     id: root
 
     property alias gameRoot: root
