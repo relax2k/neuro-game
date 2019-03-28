@@ -16,13 +16,9 @@ Entity {
         scale: 0.5
     }
 
-//    Mesh {
-//        id: mesh
-//        source: "models/box.obj"
-//    }
-
-    CuboidMesh {
+    Mesh {
         id: mesh
+        source: "qrc:/models/box.obj"
     }
 
     PhongMaterial {
