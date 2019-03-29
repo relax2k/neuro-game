@@ -28,7 +28,7 @@ Item {
             id: singlePlayerButton
             Layout.alignment: Qt.AlignCenter
             text: "Singleplayer"
-            font.pointSize: 30
+            font.pointSize: root.width / 15
             width: parent.width
             onClicked: {
                 mainMenuButton.visible = true
@@ -40,7 +40,7 @@ Item {
             id: multiplayerButton
             Layout.alignment: Qt.AlignCenter
             text: "Multiplayer"
-            font.pointSize: 30
+            font.pointSize: root.width / 15
             width: parent.width
         }
 
@@ -48,7 +48,7 @@ Item {
             id: settingsButton
             Layout.alignment: Qt.AlignCenter
             text: "Settings"
-            font.pointSize: 30
+            font.pointSize: root.width / 15
             width: parent.width
         }
 
@@ -56,7 +56,7 @@ Item {
             id: exitButton
             Layout.alignment: Qt.AlignCenter
             text: "Exit"
-            font.pointSize: 30
+            font.pointSize: root.width / 15
             width: parent.width
             onClicked: Qt.quit()
         }

@@ -13,7 +13,7 @@ Item {
         Layout.alignment: Qt.AlignCenter
         opacity: 0.9
         text: "Menu"
-        font.pointSize: 10
+        font.pointSize: root.width / 5
         width: parent.width
         onClicked: {
             mainMenu.visible = true
