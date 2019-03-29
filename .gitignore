@@ -3,8 +3,6 @@
 
 ### Custom ###
 *.pdf
-*.png
-*.mtl
 
 ### LaTeX ###
 ## Core latex/pdflatex auxiliary files:
