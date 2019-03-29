@@ -18,19 +18,18 @@ Entity {
 
     Mesh {
         id: mesh
-        source: "qrc:/models/box.obj"
+        source: "models/box.obj"
     }
 
-    PhongMaterial {
-        id: material
-        diffuse: "green"
-    }
-
-//    DiffuseMapMaterial {
+//    PhongMaterial {
 //        id: material
-////        diffuse: "qrc:/models/apple-texture.png"
+//        diffuse: "green"
 //    }
 
+    DiffuseMapMaterial {
+        id: material
+        diffuse: TextureLoader { source: "qrc:/models/box.png" }
+    }
 
     components: [material, mesh, transform]
 }
