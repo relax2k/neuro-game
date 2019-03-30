@@ -14,10 +14,7 @@ Item {
 
     Scene3D {
         id: scene
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
+        anchors.fill: parent
         focus: true
         aspects: "input"
 
