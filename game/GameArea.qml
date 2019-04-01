@@ -12,7 +12,7 @@ Entity {
 
     property alias gameRoot: root
     property alias timerInterval: timer.interval
-    property int initialTimeInterval: 80
+    property int initialTimeInterval: 5
 
 
     Entity {
@@ -93,7 +93,12 @@ Entity {
         id: timer
         interval: initialTimeInterval
         repeat: true
-        onTriggered: {}
+        property real r: 10
+        property real t: 0.1;
+        onTriggered: {
+            ball.position = Qt.vector3d(r * Math.sin(t), r * Math.cos(t), 0)
+            t += 0.1;
+        }
     }
 
 
