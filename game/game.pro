@@ -15,7 +15,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
     ball.cpp \
-    gameobj.cpp
+    gameobj.cpp \
+    table.cpp
 
 RESOURCES += qml.qrc
 
@@ -32,4 +33,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     ball.hpp \
-    gameobj.hpp
+    gameobj.hpp \
+    table.hpp
