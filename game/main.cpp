@@ -3,6 +3,8 @@
 #include <QtQml/QQmlEngine>
 #include <QtQuick/QQuickView>
 
+#include "ball.hpp"
+
 
 int main(int argc, char *argv[])
 {
@@ -15,6 +17,8 @@ int main(int argc, char *argv[])
     }
     format.setDepthBufferSize(24);
     format.setStencilBufferSize(8);
+
+    qmlRegisterType<Ball>("Engine.Objs", 1, 0, "CBall");
 
     QQuickView view;
     view.setFormat(format);

@@ -5,13 +5,14 @@
 
 QVector3D GameObj::getPos() const
 {
-    qDebug() << "I'm getter";
+//    qDebug() << "I'm getter";
     return position;
 }
 
 
 void GameObj::setPos(QVector3D pos)
 {
-    qDebug() << "I'm setter";
+//    qDebug() << "I'm setter";
     position = pos;
+    emit posChanged();
 }
