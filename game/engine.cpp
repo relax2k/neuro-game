@@ -46,7 +46,7 @@ Engine::State Engine::getState() const
 
 void Engine::menuInit() const
 {
-    cam_.position() = CAM_MENU_POS_;
+//    cam_.position() = CAM_MENU_POS_;
 }
 
 

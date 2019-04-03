@@ -5,14 +5,14 @@
 #include <QVector3D>
 
 
-class GameObj
+class GameEntity
         : public Qt3DCore::QEntity
 {
     Q_OBJECT
     Q_PROPERTY(QVector3D position READ getPos WRITE setPos NOTIFY posChanged)
 
 public:
-    explicit GameObj(QObject * /*parent*/ = nullptr) {}
+    explicit GameEntity(QObject * /*parent*/ = nullptr) {}
 
     QVector3D getPos() const;
     void setPos(QVector3D pos);

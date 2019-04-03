@@ -1,6 +1,9 @@
 #ifndef ENGINE_HPP
 #define ENGINE_HPP
 
+#include <memory>
+#include <vector>
+
 #include <QObject>
 #include <QQmlEngine>
 #include <QVector3D>
@@ -8,6 +11,7 @@
 
 #include "ball.hpp"
 #include "camera.hpp"
+#include "updatable.hpp"
 
 
 class Engine
@@ -43,7 +47,7 @@ private:
 private:
     const QVector3D CAM_MENU_POS_ = {30, 30, 50};
 
-    Camera cam_;
+    std::vector<std::shared_ptr<Updatable>> components_;
 
     State state{};
     int64_t time_{};

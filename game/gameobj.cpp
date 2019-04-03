@@ -3,13 +3,13 @@
 #include <QDebug>
 
 
-QVector3D GameObj::getPos() const
+QVector3D GameEntity::getPos() const
 {
     return position;
 }
 
 
-void GameObj::setPos(QVector3D pos)
+void GameEntity::setPos(QVector3D pos)
 {
     position = pos;
     emit posChanged();

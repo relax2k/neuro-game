@@ -38,4 +38,5 @@ HEADERS += \
     gameobj.hpp \
     table.hpp \
     engine.hpp \
-    camera.hpp
+    camera.hpp \
+    updatable.hpp

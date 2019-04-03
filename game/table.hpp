@@ -5,13 +5,13 @@
 
 
 class Table
-        : public GameObj
+        : public GameEntity
 {
     Q_OBJECT
 
 public:
     explicit Table(QObject * parent = nullptr)
-        : GameObj(parent) {}
+        : GameEntity(parent) {}
 };
 
 

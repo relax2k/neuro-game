@@ -5,13 +5,13 @@
 
 
 class Ball
-        : public GameObj
+        : public GameEntity
 {
     Q_OBJECT
 
 public:
     explicit Ball(QObject * parent = nullptr)
-        : GameObj(parent) {}
+        : GameEntity(parent) {}
 };
 
 

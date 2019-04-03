@@ -3,6 +3,8 @@
 
 #include <Qt3DRender/QCamera>
 
+#include "gameobj.hpp"
+
 
 class Camera
         : public Qt3DRender::QCamera
