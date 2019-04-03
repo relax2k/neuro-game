@@ -4,6 +4,7 @@
 #include <QtQuick/QQuickView>
 
 #include "ball.hpp"
+#include "camera.hpp"
 #include "engine.hpp"
 
 
@@ -21,6 +22,7 @@ int main(int argc, char *argv[])
 
 
     qmlRegisterType<Ball>("Engine.Objs", 1, 0, "CBall");
+    qmlRegisterType<Camera>("Engine.Core", 1, 0, "CCamera");
     qmlRegisterSingletonType<Engine>("Engine.Core", 1, 0, "Engine",
                                      [](QQmlEngine *,
                                      QJSEngine *) -> QObject * {
