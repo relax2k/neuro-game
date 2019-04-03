@@ -7,6 +7,5 @@
         <file>models/box.obj</file>
         <file>MainMenuButton.qml</file>
         <file>models/box.png</file>
-        <file>Scene.qml</file>
     </qresource>
 </RCC>

@@ -14,7 +14,7 @@ Entity {
 
     property alias gameRoot: root
     property int initialTimeInterval: 5 // TODO
-//    property alias state: Engine.state
+    //    property alias state: Engine.state
 
 
     Camera {
@@ -44,28 +44,26 @@ Entity {
     }
 
 
-    Scene {
-        Ball {
-            id: ball
-        }
+    Ball {
+        id: ball
+    }
 
-        Entity {
-            id: sun
-            components: [
-                DirectionalLight {
-                    color: Qt.rgba(0.8, 0.8, 0.8, 1)
-                    worldDirection: Qt.vector3d(-0.6, -0.5, -1)
-                },
-                DirectionalLight {
-                    color: Qt.rgba(0.8, 0.8, 0.8, 1)
-                    worldDirection: Qt.vector3d(-0.6, -0.5, 1)
-                },
-                DirectionalLight {
-                    color: Qt.rgba(0.8, 0.8, 0.8, 1)
-                    worldDirection: Qt.vector3d(0.6, -0.5, 1)
-                }
-            ]
-        }
+    Entity {
+        id: sun
+        components: [
+            DirectionalLight {
+                color: Qt.rgba(0.8, 0.8, 0.8, 1)
+                worldDirection: Qt.vector3d(-0.6, -0.5, -1)
+            },
+            DirectionalLight {
+                color: Qt.rgba(0.8, 0.8, 0.8, 1)
+                worldDirection: Qt.vector3d(-0.6, -0.5, 1)
+            },
+            DirectionalLight {
+                color: Qt.rgba(0.8, 0.8, 0.8, 1)
+                worldDirection: Qt.vector3d(0.6, -0.5, 1)
+            }
+        ]
     }
 
 
