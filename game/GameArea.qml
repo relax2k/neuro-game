@@ -5,67 +5,46 @@ import Qt3D.Extras 2.0
 import QtSensors 5.11
 import QtQuick 2.6 as QQ2
 
+import Engine.Core 1.0
+
 
 Entity {
 
     id: root
 
     property alias gameRoot: root
-    property alias timerInterval: timer.interval
-    property int initialTimeInterval: 5
+    property int initialTimeInterval: 5 // TODO
+    property alias state: Engine.state
 
-
-    Entity {
-        id: sun
-        components: [
-            DirectionalLight {
-                color: Qt.rgba(0.8, 0.8, 0.8, 1)
-                worldDirection: Qt.vector3d(-0.6, -0.5, -1)
-            },
-            DirectionalLight {
-                color: Qt.rgba(0.8, 0.8, 0.8, 1)
-                worldDirection: Qt.vector3d(-0.6, -0.5, 1)
-            },
-            DirectionalLight {
-                color: Qt.rgba(0.8, 0.8, 0.8, 1)
-                worldDirection: Qt.vector3d(0.6, -0.5, 1)
-            }
-        ]
-    }
 
     Camera {
-        property real x: 24.5
-        property real y: 14.0
-
         id: camera
+        objectName: "camera"
+
+        property alias to: camera.viewCenter
+        property alias up: camera.upVector
+        property alias pos: camera.position
+
         projectionType: CameraLens.PerspectiveProjection
         fieldOfView: 45
         aspectRatio: 16/9
         nearPlane : 0.1
         farPlane : 1000.0
-        position: Qt.vector3d( -(x + 10), -(y + 10), -50.0 )
-        upVector: Qt.vector3d( 0.0, 1.0, 0.0 )
-        viewCenter: Qt.vector3d( x, y, 0.0 )
+        upVector: Qt.vector3d(0.0, 1.0, 0.0)
+        position: Qt.vector3d(0, 0, 5 * 10)
+        viewCenter: Qt.vector3d(0, 0, 0)
     }
 
     RenderSettings {
         id: frameFraph
         activeFrameGraph: ForwardRenderer {
-            clearColor: Qt.rgba(0.05, 0.55, 0.95, 1)
+            clearColor: Qt.rgba(0.05, 0.55, 0.95, 1) // TODO
             camera: camera
         }
     }
 
 
-    Ball {
-        id: ball
-        position: Qt.vector3d(camera.x, camera.y, 2.0)
-    }
-
-    Block {
-        id: block
-        position: Qt.vector3d(camera.x + 2, camera.y - 2, -20.0)
-    }
+    Scene {}
 
 
     KeyboardDevice {
@@ -87,6 +66,7 @@ Entity {
     QQ2.Component.onCompleted: {
         console.log("Start game...");
         timer.start()
+        Engine.init()
     }
 
     QQ2.Timer {
@@ -96,11 +76,11 @@ Entity {
         property real r: 10
         property real t: 0.1;
         onTriggered: {
+            // TODO(tmp demonstration)
             ball.position = Qt.vector3d(r * Math.sin(t), r * Math.cos(t), 0)
             t += 0.1;
         }
     }
-
 
     components: [frameFraph, input]
 }
