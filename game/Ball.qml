@@ -7,13 +7,11 @@ import Engine.Objs 1.0
 
 CBall {
 
-    // TODO(Yuki/ball texturing)
-
     property alias position: transform.translation
 
     PhongMaterial {
         id: material
-        diffuse: "red"
+        diffuse: "yellow"
     }
 
     SphereMesh {
@@ -22,7 +20,6 @@ CBall {
 
     Transform {
         id: transform
-//        translation: position
     }
 
     components: [material, mesh, transform]

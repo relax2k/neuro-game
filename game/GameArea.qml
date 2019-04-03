@@ -14,12 +14,10 @@ Entity {
 
     property alias gameRoot: root
     property int initialTimeInterval: 5 // TODO
-    //    property alias state: Engine.state
 
 
-    Camera {
+    CCamera {
         id: camera
-        objectName: "camera"
 
         property alias to: camera.viewCenter
         property alias up: camera.upVector
@@ -91,15 +89,11 @@ Entity {
 
     QQ2.Timer {
         id: timer
+        objectName: "timer"
         interval: initialTimeInterval
         repeat: true
-        property real r: 10
-        property real t: 0.1;
         onTriggered: {
             Engine.update()
-            // TODO(tmp demonstration)
-            ball.position = Qt.vector3d(r * Math.sin(t), r * Math.cos(t), 0)
-            t += 0.1;
         }
     }
 
