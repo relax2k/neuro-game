@@ -2,8 +2,11 @@ import QtQuick 2.6
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
 
+import Engine.Core 1.0
+
 
 Item {
+
     id: root
     anchors.centerIn: parent
     width: parent.width / 3
@@ -31,6 +34,7 @@ Item {
             font.pointSize: root.width / 15
             width: parent.width
             onClicked: {
+                Engine.state = State.GAME
                 mainMenuButton.visible = true
                 mainMenu.visible = false
             }
@@ -42,6 +46,7 @@ Item {
             text: "Multiplayer"
             font.pointSize: root.width / 15
             width: parent.width
+            onClicked: { } // TODO(Yuki/multiplayer button)
         }
 
         Button {
@@ -50,6 +55,7 @@ Item {
             text: "Settings"
             font.pointSize: root.width / 15
             width: parent.width
+            onClicked: { } // TODO (Yuki/settings button)
         }
 
         Button {

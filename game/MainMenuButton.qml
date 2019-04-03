@@ -2,6 +2,8 @@ import QtQuick 2.6
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
 
+import Engine.Core 1.0
+
 
 Item {
     id: root
@@ -16,6 +18,7 @@ Item {
         font.pointSize: root.width / 5
         width: parent.width
         onClicked: {
+            Engine.state = State.MENU
             mainMenu.visible = true
             mainMenuButton.visible = false
         }
