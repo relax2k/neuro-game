@@ -18,7 +18,7 @@ Item {
         font.pointSize: root.width / 5
         width: parent.width
         onClicked: {
-            Engine.state = State.MENU
+            Engine.state = Engine.MENU
             mainMenu.visible = true
             mainMenuButton.visible = false
         }

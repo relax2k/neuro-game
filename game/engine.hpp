@@ -16,7 +16,7 @@ public:
     enum class State {
         GAME, MENU
     };
-    Q_ENUMS(State)
+    Q_ENUM(State)
 
 public:
     explicit Engine(QObject * parent = nullptr)
@@ -34,6 +34,8 @@ signals:
 private:
      State state;
 };
+
+Q_DECLARE_METATYPE(Engine::State)
 
 
 #endif // ENGINE_HPP

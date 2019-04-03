@@ -34,7 +34,7 @@ Item {
             font.pointSize: root.width / 15
             width: parent.width
             onClicked: {
-                Engine.state = State.GAME
+                Engine.state = Engine.GAME
                 mainMenuButton.visible = true
                 mainMenu.visible = false
             }
