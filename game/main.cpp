@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     format.setDepthBufferSize(24);
     format.setStencilBufferSize(8);
 
-    qmlRegisterType<Ball>("Engine.Objs", 1, 0, "Ball");
+    qmlRegisterType<Ball>("Engine.Objs", 1, 0, "CBall");
     qmlRegisterSingletonType<Engine>("Engine.Core", 1, 0, "Engine",
                                      [](QQmlEngine * /*engine*/,
                                      QJSEngine * /*scriptEngine*/) -> QObject * {

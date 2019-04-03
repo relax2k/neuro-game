@@ -14,7 +14,7 @@ Entity {
 
     property alias gameRoot: root
     property int initialTimeInterval: 5 // TODO
-    property alias state: Engine.state
+//    property alias state: Engine.state
 
 
     Camera {
@@ -44,7 +44,29 @@ Entity {
     }
 
 
-    Scene {}
+    Scene {
+        Ball {
+            id: ball
+        }
+
+        Entity {
+            id: sun
+            components: [
+                DirectionalLight {
+                    color: Qt.rgba(0.8, 0.8, 0.8, 1)
+                    worldDirection: Qt.vector3d(-0.6, -0.5, -1)
+                },
+                DirectionalLight {
+                    color: Qt.rgba(0.8, 0.8, 0.8, 1)
+                    worldDirection: Qt.vector3d(-0.6, -0.5, 1)
+                },
+                DirectionalLight {
+                    color: Qt.rgba(0.8, 0.8, 0.8, 1)
+                    worldDirection: Qt.vector3d(0.6, -0.5, 1)
+                }
+            ]
+        }
+    }
 
 
     KeyboardDevice {
@@ -76,6 +98,7 @@ Entity {
         property real r: 10
         property real t: 0.1;
         onTriggered: {
+            Engine.update()
             // TODO(tmp demonstration)
             ball.position = Qt.vector3d(r * Math.sin(t), r * Math.cos(t), 0)
             t += 0.1;

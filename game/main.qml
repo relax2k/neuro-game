@@ -5,6 +5,8 @@ import QtQuick.Scene3D 2.0
 
 Item {
 
+    // TODO(Yuki/fullscreen property)
+
     id: mainWindow
 
     visible: true
