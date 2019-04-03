@@ -3,7 +3,11 @@
 
 #include <QObject>
 #include <QQmlEngine>
+#include <QVector3D>
 #include <QtGlobal>
+
+#include "ball.hpp"
+#include "camera.hpp"
 
 
 class Engine
@@ -31,8 +35,19 @@ public:
 signals:
     void stateChanged();
 
+
 private:
-     State state;
+    void menuInit() const;
+    void gameInit() const;
+
+private:
+    const QVector3D CAM_MENU_POS_ = {30, 30, 50};
+
+    Camera cam_;
+
+    State state{};
+    int64_t time_{};
+    int64_t interval_ms_ = 5; // WARNING(same as in qml) TODO(add assert)
 };
 
 Q_DECLARE_METATYPE(Engine::State)
