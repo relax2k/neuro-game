@@ -16,7 +16,9 @@ SOURCES += \
         main.cpp \
     ball.cpp \
     gameobj.cpp \
-    table.cpp
+    table.cpp \
+    engine.cpp \
+    camera.cpp
 
 RESOURCES += qml.qrc
 
@@ -34,4 +36,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     ball.hpp \
     gameobj.hpp \
-    table.hpp
+    table.hpp \
+    engine.hpp \
+    camera.hpp
