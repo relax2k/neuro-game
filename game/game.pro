@@ -1,4 +1,6 @@
-QT += 3dcore 3drender 3dquick 3dinput 3dextras
+QT += 3dcore 3drender 3dinput 3dextras
+QT += widgets
+
 CONFIG += c++17
 
 # The following define makes your compiler emit warnings if you use
@@ -12,10 +14,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += \
-    main.cpp
+SOURCES += main.cpp
 
-HEADERS += \
+HEADERS +=
 
 RESOURCES +=
 
