@@ -16,7 +16,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp
 
-HEADERS +=
+HEADERS += \
+    stdafx.hpp
+
+PRECOMPILED_HEADER = stdafx.hpp
 
 RESOURCES +=
 

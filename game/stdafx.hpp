@@ -1,0 +1,6 @@
+#ifndef GAME_STDAFX_HPP
+#define GAME_STDAFX_HPP
+
+
+
+#endif // GAME_STDAFX_HPP

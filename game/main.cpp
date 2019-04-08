@@ -46,7 +46,7 @@ int main(int argc, char * argv[])
     container->setMaximumSize(screenSize);
 
     QWidget * widget = new QWidget;
-    QHBoxLayout *hLayout = new QHBoxLayout(widget);
+    QHBoxLayout * hLayout = new QHBoxLayout(widget);
     hLayout->addWidget(container);
 
 
