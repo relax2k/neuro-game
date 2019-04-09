@@ -23,8 +23,8 @@ private:
 
 
 inline Game & Game::instance() {
-    static Game e;
-    return e;
+    static Game inst;
+    return inst;
 }
 
 
