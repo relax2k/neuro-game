@@ -8,6 +8,10 @@
 
 #include <QGuiApplication>
 
+#include <QTextureMaterial>
+#include <QNormalDiffuseSpecularMapMaterial>
+#include <QDiffuseMapMaterial>
+
 #include <Qt3DRender/qcamera.h>
 #include <Qt3DCore/qentity.h>
 #include <Qt3DRender/qcameralens.h>
@@ -30,6 +34,7 @@
 #include <Qt3DRender/qrenderpass.h>
 #include <Qt3DRender/qsceneloader.h>
 #include <Qt3DRender/qpointlight.h>
+#include <Qt3DRender/QMesh>
 
 #include <Qt3DCore/qtransform.h>
 #include <Qt3DCore/qaspectengine.h>
