@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>models/table.obj</file>
+        <file>models/table.png</file>
+        <file>models/box.obj</file>
+        <file>models/box.png</file>
+    </qresource>
+</RCC>
