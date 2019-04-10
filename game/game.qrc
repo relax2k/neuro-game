@@ -4,5 +4,7 @@
         <file>models/table.png</file>
         <file>models/box.obj</file>
         <file>models/box.png</file>
+        <file>models/room.obj</file>
+        <file>models/room.png</file>
     </qresource>
 </RCC>
