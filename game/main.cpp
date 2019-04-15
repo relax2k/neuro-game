@@ -1,7 +1,7 @@
 #include "stdafx.hpp"
 
 #include "game.hpp"
-#include "moveaspect.hpp"
+#include "systems/move/moveaspect.hpp"
 
 
 int main(int argc, char * argv[])
