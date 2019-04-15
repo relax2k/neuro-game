@@ -3,6 +3,7 @@
 #include "game.hpp"
 #include "systems/move/moveaspect.hpp"
 
+#include "engine.hpp"
 
 int main(int argc, char * argv[])
 {
@@ -12,20 +13,35 @@ int main(int argc, char * argv[])
     view->defaultFrameGraph()->setClearColor(QColor(QRgb(0x2D9EB5)));
 
     Qt3DCore::QEntity * rootEntity = new Qt3DCore::QEntity();
-    view->setRootEntity(rootEntity);
+    view->setRootEntity(rootEntity);     
 
     QWidget * container = QWidget::createWindowContainer(view);
     QSize screenSize = view->screen()->size();
     container->setMinimumSize(QSize(200, 100));
     container->setMaximumSize(screenSize);
 
+    //QML menu init
+
+    qmlRegisterSingletonType<Engine>("Engine.Core", 1, 0, "Engine",
+                                     [](QQmlEngine *,
+                                     QJSEngine *) -> QObject * {
+        auto * engine = new Engine();
+        return engine;
+    });
+
+    QQuickWidget * menuView = new QQuickWidget(container);
+    menuView->setSource(QUrl("qrc:/main.qml"));
+    QObject::connect(menuView->engine(), &QQmlEngine::quit,
+                     &app, &QGuiApplication::quit);
+
+    //end QML menu init
+
     QWidget * widget = new QWidget;
-    QHBoxLayout * hLayout = new QHBoxLayout(widget);
+    QStackedLayout * hLayout = new QStackedLayout(widget);
+
     hLayout->addWidget(container);
 
-
     view->registerAspect(new MoveAspect);
-
 
     Game::instance().init(rootEntity, view->camera());
 

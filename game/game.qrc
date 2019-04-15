@@ -6,5 +6,8 @@
         <file>models/box.png</file>
         <file>models/room.obj</file>
         <file>models/room.png</file>
+        <file>MainMenu.qml</file>
+        <file>MainMenuButton.qml</file>
+        <file>main.qml</file>
     </qresource>
 </RCC>

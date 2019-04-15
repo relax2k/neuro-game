@@ -21,6 +21,11 @@
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QCommandLinkButton>
 #include <QtGui/QScreen>
+#include <QQuickView>
+#include <QQuickWidget>
+#include <QtGui/QOpenGLContext>
+#include <QtQml/QQmlEngine>
+#include <QStackedLayout>
 
 #include <Qt3DInput/QInputAspect>
 

@@ -1,5 +1,5 @@
 QT += gui qml quick 3dcore 3drender 3dquick 3dinput 3dextras
-QT += widgets
+QT += widgets quick quickwidgets
 
 CONFIG += c++17
 
@@ -20,7 +20,8 @@ SOURCES += main.cpp \
     systems/move/movebackend.cpp \
     systems/move/moveaspect.cpp \
     systems/move/movable.cpp \
-    systems/move/updateposjob.cpp
+    systems/move/updateposjob.cpp \
+    engine.cpp
 
 HEADERS += \
     stdafx.hpp \
@@ -29,7 +30,9 @@ HEADERS += \
     systems/move/movebackend.hpp \
     systems/move/moveaspect.hpp \
     systems/move/movable.hpp \
-    systems/move/updateposjob.hpp
+    systems/move/updateposjob.hpp \
+    engine.hpp \
+    updatable.hpp
 
 PRECOMPILED_HEADER = stdafx.hpp
 
