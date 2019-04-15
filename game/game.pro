@@ -17,19 +17,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp \
     scene.cpp \
     game.cpp \
-    movebackend.cpp \
-    moveaspect.cpp \
-    movable.cpp \
-    updateposjob.cpp
+    systems/move/movebackend.cpp \
+    systems/move/moveaspect.cpp \
+    systems/move/movable.cpp \
+    systems/move/updateposjob.cpp
 
 HEADERS += \
     stdafx.hpp \
     scene.hpp \
     game.hpp \
-    movebackend.hpp \
-    moveaspect.hpp \
-    movable.hpp \
-    updateposjob.hpp
+    systems/move/movebackend.hpp \
+    systems/move/moveaspect.hpp \
+    systems/move/movable.hpp \
+    systems/move/updateposjob.hpp
 
 PRECOMPILED_HEADER = stdafx.hpp
 
