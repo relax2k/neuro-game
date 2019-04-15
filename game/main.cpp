@@ -33,5 +33,5 @@ int main(int argc, char * argv[])
     widget->show();
     widget->resize(1200, 800);
 
-    return app.exec();
+    return QGuiApplication::exec();
 }
