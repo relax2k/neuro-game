@@ -15,7 +15,7 @@ Qt3DCore::QEntity * Scene::createTable() const
 {
     auto * transform = new Qt3DCore::QTransform;
     transform->setTranslation({0, 0, 0});
-    transform->setScale(0.1f);
+    transform->setScale(1);
     transform->setRotation(
                 QQuaternion::fromAxisAndAngle(QVector3D(0, 1, 0), 90));
 

@@ -1,5 +1,4 @@
-#ifndef SCENE_HPP
-#define SCENE_HPP
+#pragma once
 
 #include "stdafx.hpp"
 
@@ -19,5 +18,3 @@ private:
     Qt3DCore::QEntity * box_;
     Qt3DCore::QEntity * room_;
 };
-
-#endif // SCENE_HPP

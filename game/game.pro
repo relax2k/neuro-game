@@ -16,12 +16,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp \
     scene.cpp \
-    game.cpp
+    game.cpp \
+    movebackend.cpp \
+    moveaspect.cpp \
+    movable.cpp \
+    updateposjob.cpp
 
 HEADERS += \
     stdafx.hpp \
     scene.hpp \
-    game.hpp
+    game.hpp \
+    movebackend.hpp \
+    moveaspect.hpp \
+    movable.hpp \
+    updateposjob.hpp
 
 PRECOMPILED_HEADER = stdafx.hpp
 

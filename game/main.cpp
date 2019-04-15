@@ -1,6 +1,7 @@
 #include "stdafx.hpp"
 
 #include "game.hpp"
+#include "moveaspect.hpp"
 
 
 int main(int argc, char * argv[])
@@ -22,7 +23,8 @@ int main(int argc, char * argv[])
     QHBoxLayout * hLayout = new QHBoxLayout(widget);
     hLayout->addWidget(container);
 
-//    view->registerAspect(new CustomAspect);
+
+    view->registerAspect(new MoveAspect);
 
 
     Game::instance().init(rootEntity, view->camera());

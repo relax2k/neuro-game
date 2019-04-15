@@ -1,5 +1,4 @@
-#ifndef ENGINE_HPP
-#define ENGINE_HPP
+#pragma once
 
 #include "stdafx.hpp"
 
@@ -26,6 +25,3 @@ inline Game & Game::instance() {
     static Game inst;
     return inst;
 }
-
-
-#endif // ENGINE_HPP
