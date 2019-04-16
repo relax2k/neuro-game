@@ -13,12 +13,7 @@ int main(int argc, char * argv[])
     view->defaultFrameGraph()->setClearColor(QColor(QRgb(0x2D9EB5)));
 
     Qt3DCore::QEntity * rootEntity = new Qt3DCore::QEntity();
-    view->setRootEntity(rootEntity);     
-
-    QWidget * container = QWidget::createWindowContainer(view);
-    QSize screenSize = view->screen()->size();
-    container->setMinimumSize(QSize(200, 100));
-    container->setMaximumSize(screenSize);
+    view->setRootEntity(rootEntity);
 
     //QML menu init
 
@@ -29,17 +24,26 @@ int main(int argc, char * argv[])
         return engine;
     });
 
-    QQuickWidget * menuView = new QQuickWidget(container);
+    QQuickWidget * menuView = new QQuickWidget;
     menuView->setSource(QUrl("qrc:/main.qml"));
     QObject::connect(menuView->engine(), &QQmlEngine::quit,
                      &app, &QGuiApplication::quit);
 
     //end QML menu init
 
-    QWidget * widget = new QWidget;
-    QStackedLayout * hLayout = new QStackedLayout(widget);
+    QWidget * container = QWidget::createWindowContainer(view);
+    QSize screenSize = view->screen()->size();
+    container->setMinimumSize(QSize(200, 100));
+    //container->setMaximumSize(screenSize);
+    container->setMaximumSize(QSize(500, 500));
 
-    hLayout->addWidget(container);
+    QWidget * widget = new QWidget;
+    QStackedLayout * stackedLayout = new QStackedLayout(widget);
+
+    stackedLayout->setStackingMode(QStackedLayout::StackAll);
+    stackedLayout->addWidget(menuView);
+    stackedLayout->addWidget(container);
+    stackedLayout->setCurrentWidget(menuView);
 
     view->registerAspect(new MoveAspect);
 
