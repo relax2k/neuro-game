@@ -20,8 +20,7 @@ SOURCES += main.cpp \
     systems/move/movebackend.cpp \
     systems/move/moveaspect.cpp \
     systems/move/movable.cpp \
-    systems/move/updateposjob.cpp \
-    engine.cpp
+    systems/move/updateposjob.cpp
 
 HEADERS += \
     stdafx.hpp \
@@ -31,7 +30,6 @@ HEADERS += \
     systems/move/moveaspect.hpp \
     systems/move/movable.hpp \
     systems/move/updateposjob.hpp \
-    engine.hpp \
     updatable.hpp
 
 PRECOMPILED_HEADER = stdafx.hpp
