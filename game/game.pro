@@ -29,8 +29,7 @@ HEADERS += \
     systems/move/movebackend.hpp \
     systems/move/moveaspect.hpp \
     systems/move/movable.hpp \
-    systems/move/updateposjob.hpp \
-    updatable.hpp
+    systems/move/updateposjob.hpp
 
 PRECOMPILED_HEADER = stdafx.hpp
 
