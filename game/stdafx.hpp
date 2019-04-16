@@ -3,7 +3,7 @@
 
 #include <cassert>
 #include <memory>
-
+#include <vector>
 
 #include <QGuiApplication>
 
@@ -15,6 +15,9 @@
 #include <QNormalDiffuseSpecularMapMaterial>
 #include <QDiffuseMapMaterial>
 
+#include <QObject>
+#include <QtGlobal>
+
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QHBoxLayout>
@@ -24,8 +27,8 @@
 #include <QQuickView>
 #include <QQuickWidget>
 #include <QtGui/QOpenGLContext>
+#include <QQmlEngine>
 #include <QtQml/QQmlEngine>
-#include <QStackedLayout>
 
 #include <Qt3DInput/QInputAspect>
 

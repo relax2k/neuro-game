@@ -5,12 +5,12 @@ import QtQuick.Scene3D 2.0
 
 Item {
 
-    // TODO(Yuki/fullscreen property)
+    // TODO(Yuki/fullscreen property) <----- ???
 
     id: mainWindow
 
     visible: true
-    width: 1280
+    width: 320
     height: 768
 
     MainMenu {

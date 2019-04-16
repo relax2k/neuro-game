@@ -9,14 +9,14 @@ Item {
 
     id: root
     anchors.centerIn: parent
-    width: parent.width / 3
-    height: parent.height / 1.5
+    width: parent.width
+    height: parent.height
 
     Rectangle {
         id:rect
 
         anchors.fill: parent
-        color: "white"
+        color: "black"
         opacity: 0.20
     }
 

@@ -13,10 +13,14 @@ int main(int argc, char * argv[])
     view->defaultFrameGraph()->setClearColor(QColor(QRgb(0x2D9EB5)));
 
     Qt3DCore::QEntity * rootEntity = new Qt3DCore::QEntity();
-    view->setRootEntity(rootEntity);
+    view->setRootEntity(rootEntity);    
 
-    //QML menu init
+    QWidget * container = QWidget::createWindowContainer(view);
+    QSize screenSize = view->screen()->size();
+    container->setMinimumSize(QSize(200, 100));
+    container->setMaximumSize(screenSize);
 
+    //QML menu init below
     qmlRegisterSingletonType<Engine>("Engine.Core", 1, 0, "Engine",
                                      [](QQmlEngine *,
                                      QJSEngine *) -> QObject * {
@@ -25,25 +29,20 @@ int main(int argc, char * argv[])
     });
 
     QQuickWidget * menuView = new QQuickWidget;
+    menuView->setMaximumSize(QSize(screenSize.width() / 6, screenSize.height()));
+    //if You like to replace 6, You should also replace some constants at main.qml
+    menuView->setMinimumSize(QSize(200, 100));
     menuView->setSource(QUrl("qrc:/main.qml"));
     QObject::connect(menuView->engine(), &QQmlEngine::quit,
                      &app, &QGuiApplication::quit);
-
     //end QML menu init
 
-    QWidget * container = QWidget::createWindowContainer(view);
-    QSize screenSize = view->screen()->size();
-    container->setMinimumSize(QSize(200, 100));
-    //container->setMaximumSize(screenSize);
-    container->setMaximumSize(QSize(500, 500));
-
     QWidget * widget = new QWidget;
-    QStackedLayout * stackedLayout = new QStackedLayout(widget);
+    QHBoxLayout * hLayout = new QHBoxLayout(widget);
 
-    stackedLayout->setStackingMode(QStackedLayout::StackAll);
-    stackedLayout->addWidget(menuView);
-    stackedLayout->addWidget(container);
-    stackedLayout->setCurrentWidget(menuView);
+    //This order is so important, don't touch it!
+    hLayout->addWidget(container); //right column
+    hLayout->addWidget(menuView); //left column
 
     view->registerAspect(new MoveAspect);
 
@@ -51,7 +50,7 @@ int main(int argc, char * argv[])
 
     widget->setWindowTitle(QStringLiteral("Brain tennis"));
     widget->show();
-    widget->resize(1200, 800);
+    widget->resize(1280, 768);
 
     return QGuiApplication::exec();
 }

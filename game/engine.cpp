@@ -1,8 +1,5 @@
 #include "engine.hpp"
 
-#include <cassert>
-
-
 void Engine::init()
 {
     setState(State::MENU);

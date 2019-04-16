@@ -1,16 +1,7 @@
 #ifndef ENGINE_HPP
 #define ENGINE_HPP
 
-#include <memory>
-#include <vector>
-
-#include <QObject>
-#include <QQmlEngine>
-#include <QVector3D>
-#include <QtGlobal>
-
-//#include "ball.hpp"
-//#include "camera.hpp"
+#include "stdafx.hpp"
 #include "updatable.hpp"
 
 
