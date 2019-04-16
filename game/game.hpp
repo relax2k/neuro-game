@@ -4,14 +4,18 @@
 #include "scene.hpp"
 
 
-class Game final {
-public:
-    static Game & instance();
+class Game
+        : public QObject {
+    Q_OBJECT
 
+public:
+    static Game * instance();
+
+    explicit Game(QObject * parent = nullptr) : QObject(parent) {}
     void init(Qt3DCore::QEntity * rootEntity, Qt3DRender::QCamera * camera);
 
 private:
-    Game() = default;
+    virtual ~Game() = default;
 
 private:
     Qt3DCore::QEntity   * rootEntity_ = nullptr;
@@ -20,7 +24,7 @@ private:
 };
 
 
-inline Game & Game::instance() {
-    static Game inst;
+inline Game * Game::instance() {
+    static Game * inst = new Game;
     return inst;
 }

@@ -2,7 +2,6 @@ import QtQuick 2.6
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
 
-import Engine.Core 1.0
 
 
 Item {
@@ -32,11 +31,7 @@ Item {
             text: "Menu"
             font.pointSize: root.width / 10
             width: parent.width
-            onClicked: {
-                Engine.state = Engine.MENU
-                mainMenu.visible = true
-                mainMenuButton.visible = false
-            }
+            onClicked: { }
         }
     }
 }

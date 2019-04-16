@@ -2,9 +2,6 @@ import QtQuick 2.6
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
 
-import Engine.Core 1.0
-
-
 Item {
 
     id: root
@@ -33,11 +30,7 @@ Item {
             text: "Singleplayer"
             font.pointSize: root.width / 15
             width: parent.width
-            onClicked: {
-                Engine.state = Engine.GAME
-                mainMenuButton.visible = true
-                mainMenu.visible = false                
-            }
+            onClicked: {}
         }
 
         Button {

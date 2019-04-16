@@ -27,7 +27,16 @@ int main(int argc, char * argv[])
     menuView->setSource(QUrl("qrc:/main.qml"));
     QObject::connect(menuView->engine(), &QQmlEngine::quit,
                      &app, &QGuiApplication::quit);
+
+    qmlRegisterSingletonType<Game>("Engine.Core", 1, 0, "Engine",
+                                   [](QQmlEngine * engine,
+                                      QJSEngine  * scriptEngine) -> QObject * {
+        Q_UNUSED(engine)
+        Q_UNUSED(scriptEngine)
+        return Game::instance();
+    });
     // end QML menu init
+
 
     QWidget * widget = new QWidget;
     QHBoxLayout * hLayout = new QHBoxLayout(widget);
@@ -40,7 +49,7 @@ int main(int argc, char * argv[])
     view->registerAspect(new MoveAspect);
 
 
-    Game::instance().init(rootEntity, view->camera());
+    Game::instance()->init(rootEntity, view->camera());
 
     widget->setWindowTitle(QStringLiteral("Brain tennis"));
     widget->show();
