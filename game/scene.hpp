@@ -14,7 +14,8 @@ private:
     Qt3DCore::QEntity * createRoom()   const;
     Qt3DCore::QEntity * createCarpet() const;
     Qt3DCore::QEntity * createWall()   const;
-    QVector<Qt3DCore::QEntity *> createLight() const;
+    QVector<Qt3DCore::QEntity *> createLights() const;
+    Qt3DCore::QEntity * createLight(QVector3D pos) const;
 
 private:
     Qt3DCore::QEntity * rootEntity_;
@@ -23,4 +24,6 @@ private:
     Qt3DCore::QEntity * carpet_;
     Qt3DCore::QEntity * wall_;
     QVector<Qt3DCore::QEntity *> light_;
+
+    constexpr static const float SCALE = 0.1f;
 };

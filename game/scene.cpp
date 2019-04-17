@@ -7,7 +7,7 @@ Scene::Scene(Qt3DCore::QEntity * root)
     , room_      (createRoom())
     , carpet_    (createCarpet())
     , wall_      (createWall())
-    , light_     (createLight())
+    , light_     (createLights())
 {
     assert(rootEntity_);
 }
@@ -17,7 +17,7 @@ Qt3DCore::QEntity * Scene::createTable() const
 {
     auto * transform = new Qt3DCore::QTransform;
     transform->setTranslation({0, 0, 0});
-    transform->setScale(1);
+    transform->setScale(1.3f * SCALE);
     transform->setRotation(
                 QQuaternion::fromAxisAndAngle(QVector3D(0, 1, 0), 90));
 
@@ -28,6 +28,8 @@ Qt3DCore::QEntity * Scene::createTable() const
     textureLoader->setSource({ASSETS "table.png"});
     auto * textures = new Qt3DExtras::QDiffuseMapMaterial;
     textures->setDiffuse(textureLoader);
+    textures->setSpecular({0, 0, 0});
+    textures->setAmbient({100, 100, 100});
 
     auto * table = new Qt3DCore::QEntity(rootEntity_);
     table->addComponent(transform);
@@ -42,7 +44,7 @@ Qt3DCore::QEntity * Scene::createRoom() const
 {
     auto * transform = new Qt3DCore::QTransform;
     transform->setTranslation({0, 0, 0});
-    transform->setScale(0.05f);
+    transform->setScale(0.05f * SCALE);
     transform->setRotation(
                 QQuaternion::fromAxisAndAngle(QVector3D(0, 1, 0), 90));
 
@@ -53,6 +55,7 @@ Qt3DCore::QEntity * Scene::createRoom() const
     textureLoader->setSource({ASSETS "room.png"});
     auto * textures = new Qt3DExtras::QDiffuseMapMaterial;
     textures->setDiffuse(textureLoader);
+    textures->setSpecular({0,0,0});
 
     auto * room = new Qt3DCore::QEntity(rootEntity_);
     room->addComponent(transform);
@@ -67,7 +70,7 @@ Qt3DCore::QEntity * Scene::createCarpet() const
 {
     auto * transform = new Qt3DCore::QTransform;
     transform->setTranslation({0, 0, 0});
-    transform->setScale(0.05f);
+    transform->setScale(0.05f * SCALE);
     transform->setRotation(
                 QQuaternion::fromAxisAndAngle(QVector3D(0, 1, 0), 90));
 
@@ -78,6 +81,7 @@ Qt3DCore::QEntity * Scene::createCarpet() const
     textureLoader->setSource({ASSETS "carpet.png"});
     auto * textures = new Qt3DExtras::QDiffuseMapMaterial;
     textures->setDiffuse(textureLoader);
+    textures->setSpecular({0, 0, 0});
 
     auto * carpet = new Qt3DCore::QEntity(rootEntity_);
     carpet->addComponent(transform);
@@ -92,7 +96,7 @@ Qt3DCore::QEntity * Scene::createWall() const
 {
     auto * transform = new Qt3DCore::QTransform;
     transform->setTranslation({0, 0, 0});
-    transform->setScale(0.05f);
+    transform->setScale(0.05f * SCALE);
     transform->setRotation(
                 QQuaternion::fromAxisAndAngle(QVector3D(0, 1, 0), 90));
 
@@ -113,21 +117,30 @@ Qt3DCore::QEntity * Scene::createWall() const
 }
 
 
-QVector<Qt3DCore::QEntity *> Scene::createLight() const
+QVector<Qt3DCore::QEntity *> Scene::createLights() const
 {
-    Qt3DCore::QEntity * lightEntity = new Qt3DCore::QEntity(rootEntity_);
+    auto * light1 = createLight({10, 10, 10});
+    auto * light2 = createLight({-10, 10, -10});
+    auto * light3 = createLight({-3, 3, 3});
 
-    Qt3DRender::QPointLight * light = new Qt3DRender::QPointLight(lightEntity);
-    light->setColor("red");
-    light->setIntensity(1.);
-    lightEntity->setProperty("position", QVector3D{0, 1000, 100});
-
-    lightEntity->addComponent(light);
-    return { lightEntity };
+    return { light1, light2, light3 };
 }
 
 
+Qt3DCore::QEntity * Scene::createLight(QVector3D pos) const
+{
+    auto * transform = new Qt3DCore::QTransform;
+    transform->setTranslation(pos);
 
+    Qt3DRender::QPointLight * light = new Qt3DRender::QPointLight;
+    light->setIntensity(0.5f);
+
+    Qt3DCore::QEntity * lightEntity = new Qt3DCore::QEntity(rootEntity_);
+    lightEntity->addComponent(light);
+    lightEntity->addComponent(transform);
+
+    return lightEntity;
+}
 
 
 
