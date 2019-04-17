@@ -7,6 +7,7 @@ Scene::Scene(Qt3DCore::QEntity * root)
     , room_      (createRoom())
     , carpet_    (createCarpet())
     , wall_      (createWall())
+    , light_     (createLight())
 {
     assert(rootEntity_);
 }
@@ -21,10 +22,10 @@ Qt3DCore::QEntity * Scene::createTable() const
                 QQuaternion::fromAxisAndAngle(QVector3D(0, 1, 0), 90));
 
     auto * mesh = new Qt3DRender::QMesh;
-    mesh->setSource({"qrc:/models/table.obj"});
+    mesh->setSource({ASSETS "table.obj"});
 
     auto * textureLoader = new Qt3DRender::QTextureLoader;
-    textureLoader->setSource({"qrc:/models/table.png"});
+    textureLoader->setSource({ASSETS "table.png"});
     auto * textures = new Qt3DExtras::QDiffuseMapMaterial;
     textures->setDiffuse(textureLoader);
 
@@ -46,10 +47,10 @@ Qt3DCore::QEntity * Scene::createRoom() const
                 QQuaternion::fromAxisAndAngle(QVector3D(0, 1, 0), 90));
 
     auto * mesh = new Qt3DRender::QMesh;
-    mesh->setSource({"qrc:/models/room.obj"});
+    mesh->setSource({ASSETS "room.obj"});
 
     auto * textureLoader = new Qt3DRender::QTextureLoader;
-    textureLoader->setSource({"qrc:/models/room.png"});
+    textureLoader->setSource({ASSETS "room.png"});
     auto * textures = new Qt3DExtras::QDiffuseMapMaterial;
     textures->setDiffuse(textureLoader);
 
@@ -71,10 +72,10 @@ Qt3DCore::QEntity * Scene::createCarpet() const
                 QQuaternion::fromAxisAndAngle(QVector3D(0, 1, 0), 90));
 
     auto * mesh = new Qt3DRender::QMesh;
-    mesh->setSource({"qrc:/models/carpet.obj"});
+    mesh->setSource({ASSETS "carpet.obj"});
 
     auto * textureLoader = new Qt3DRender::QTextureLoader;
-    textureLoader->setSource({"qrc:/models/carpet.png"});
+    textureLoader->setSource({ASSETS "carpet.png"});
     auto * textures = new Qt3DExtras::QDiffuseMapMaterial;
     textures->setDiffuse(textureLoader);
 
@@ -96,10 +97,10 @@ Qt3DCore::QEntity * Scene::createWall() const
                 QQuaternion::fromAxisAndAngle(QVector3D(0, 1, 0), 90));
 
     auto * mesh = new Qt3DRender::QMesh;
-    mesh->setSource({"qrc:/models/walls.obj"});
+    mesh->setSource({ASSETS "walls.obj"});
 
     auto * textureLoader = new Qt3DRender::QTextureLoader;
-    textureLoader->setSource({"qrc:/models/walls.png"});
+    textureLoader->setSource({ASSETS "walls.png"});
     auto * textures = new Qt3DExtras::QDiffuseMapMaterial;
     textures->setDiffuse(textureLoader);
 
@@ -112,7 +113,18 @@ Qt3DCore::QEntity * Scene::createWall() const
 }
 
 
+QVector<Qt3DCore::QEntity *> Scene::createLight() const
+{
+    Qt3DCore::QEntity * lightEntity = new Qt3DCore::QEntity(rootEntity_);
 
+    Qt3DRender::QPointLight * light = new Qt3DRender::QPointLight(lightEntity);
+    light->setColor("red");
+    light->setIntensity(1.);
+    lightEntity->setProperty("position", QVector3D{0, 1000, 100});
+
+    lightEntity->addComponent(light);
+    return { lightEntity };
+}
 
 
 

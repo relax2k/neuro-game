@@ -1,15 +1,15 @@
 <RCC>
     <qresource prefix="/">
-        <file>models/table.obj</file>
-        <file>models/table.png</file>
-        <file>models/room.obj</file>
-        <file>models/room.png</file>
         <file>MainMenu.qml</file>
         <file>MainMenuButton.qml</file>
         <file>main.qml</file>
-        <file>models/carpet.obj</file>
-        <file>models/carpet.png</file>
-        <file>models/walls.obj</file>
-        <file>models/walls.png</file>
+        <file>assets/carpet.obj</file>
+        <file>assets/carpet.png</file>
+        <file>assets/room.obj</file>
+        <file>assets/room.png</file>
+        <file>assets/table.obj</file>
+        <file>assets/table.png</file>
+        <file>assets/walls.obj</file>
+        <file>assets/walls.png</file>
     </qresource>
 </RCC>
