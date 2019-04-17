@@ -13,8 +13,8 @@ Item {
         id:rect
 
         anchors.fill: parent
-        color: "black"
-        opacity: 0.20
+        color: "white"
+        opacity: 1
     }
 
     Column {

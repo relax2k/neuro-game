@@ -14,7 +14,7 @@ Item {
 
         anchors.fill: parent
         color: "black"
-        opacity: 0.20
+        opacity: 1
     }
 
     Column {
