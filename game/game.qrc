@@ -11,5 +11,7 @@
         <file>assets/table.png</file>
         <file>assets/walls.obj</file>
         <file>assets/walls.png</file>
+	<file>assets/ceiling.obj</file>
+        <file>assets/ceiling.png</file>
     </qresource>
 </RCC>

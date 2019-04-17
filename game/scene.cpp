@@ -7,6 +7,7 @@ Scene::Scene(Qt3DCore::QEntity * root)
     , room_      (createRoom())
     , carpet_    (createCarpet())
     , wall_      (createWall())
+    , ceiling_   (createCeiling())
     , light_     (createLights())
 {
     assert(rootEntity_);
@@ -64,6 +65,32 @@ Qt3DCore::QEntity * Scene::createRoom() const
 
     return room;
 }
+
+
+Qt3DCore::QEntity * Scene::createCeiling() const
+{
+    auto * transform = new Qt3DCore::QTransform;
+    transform->setTranslation({0, 0, 0});
+    transform->setScale(0.005f);
+    transform->setRotation(
+                QQuaternion::fromAxisAndAngle(QVector3D(0, 1, 0), 90));
+
+    auto * mesh = new Qt3DRender::QMesh;
+    mesh->setSource({ASSETS "ceiling.obj"});
+
+    auto * textureLoader = new Qt3DRender::QTextureLoader;
+    textureLoader->setSource({ASSETS "ceiling.png"});
+    auto * textures = new Qt3DExtras::QDiffuseMapMaterial;
+    textures->setDiffuse(textureLoader);
+
+    auto * ceiling = new Qt3DCore::QEntity(rootEntity_);
+    ceiling->addComponent(transform);
+    ceiling->addComponent(mesh);
+    ceiling->addComponent(textures);
+
+    return ceiling;
+}
+
 
 
 Qt3DCore::QEntity * Scene::createCarpet() const
