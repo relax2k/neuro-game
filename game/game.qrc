@@ -2,12 +2,14 @@
     <qresource prefix="/">
         <file>models/table.obj</file>
         <file>models/table.png</file>
-        <file>models/box.obj</file>
-        <file>models/box.png</file>
         <file>models/room.obj</file>
         <file>models/room.png</file>
         <file>MainMenu.qml</file>
         <file>MainMenuButton.qml</file>
         <file>main.qml</file>
+        <file>models/carpet.obj</file>
+        <file>models/carpet.png</file>
+        <file>models/walls.obj</file>
+        <file>models/walls.png</file>
     </qresource>
 </RCC>
