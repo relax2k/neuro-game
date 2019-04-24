@@ -7,7 +7,7 @@ Item {
     id: root
     anchors.centerIn: parent
     width: parent.width
-    height: parent.height
+    height: parent.height    
 
     Rectangle {
         id:rect
@@ -30,7 +30,7 @@ Item {
             text: "Singleplayer"
             font.pointSize: root.width / 15
             width: parent.width
-            onClicked: {}
+            onClicked: { cppController.singlePlayrButtClickd() }
         }
 
         Button {
@@ -39,7 +39,7 @@ Item {
             text: "Multiplayer"
             font.pointSize: root.width / 15
             width: parent.width
-            onClicked: { } // TODO(Yuki/multiplayer button)
+            onClicked: { cppController.multiPlayrButtClickd() }
         }
 
         Button {
@@ -47,8 +47,9 @@ Item {
             Layout.alignment: Qt.AlignCenter
             text: "Settings"
             font.pointSize: root.width / 15
-            width: parent.width
-            onClicked: { } // TODO (Yuki/settings button)
+            width: parent.width                        
+
+            onClicked: { cppController.settngsButtClickd() }
         }
 
         Button {
@@ -57,7 +58,7 @@ Item {
             text: "Exit"
             font.pointSize: root.width / 15
             width: parent.width
-            onClicked: Qt.quit()
+            onClicked: Qt.quit()          
         }
     }
 }
