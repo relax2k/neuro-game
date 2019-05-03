@@ -2,7 +2,7 @@
 
 #include "game.hpp"
 #include "systems/move/moveaspect.hpp"
-
+#include "mainmenucontroller.hpp"
 
 int main(int argc, char * argv[])
 {
@@ -20,13 +20,17 @@ int main(int argc, char * argv[])
     container->setMaximumSize(screenSize);
 
     // QML menu init
-    QQuickWidget * menuView = new QQuickWidget;
+    QQuickWidget * menuView = new QQuickWidget;            
+
     menuView->setMaximumSize(QSize(screenSize.width() / 6, screenSize.height()));
     //if You like to replace 6, You should also replace some constants at main.qml
     menuView->setMinimumSize(QSize(200, 100));
     menuView->setSource(QUrl("qrc:/main.qml"));
-    QObject::connect(menuView->engine(), &QQmlEngine::quit,
-                     &app, &QGuiApplication::quit);
+    //QObject::connect(menuView->engine(), &QQmlEngine::quit,
+    //                 &app, &QGuiApplication::quit);
+
+    //create controller to link qml buttons with c++ code
+    MainMenuController * menuController = new MainMenuController();
 
     qmlRegisterSingletonType<Game>("Engine.Core", 1, 0, "Engine",
                                    [](QQmlEngine * engine,
@@ -34,7 +38,13 @@ int main(int argc, char * argv[])
         Q_UNUSED(engine)
         Q_UNUSED(scriptEngine)
         return Game::instance();
-    });
+    });      
+
+    //link controller to qml
+    menuView->rootContext()->setContextProperty("cppController", menuController);
+
+    //link quit button to quit
+    QObject::connect(menuView->engine(), SIGNAL(quit()), QCoreApplication::instance(), SLOT(quit()));
     // end QML menu init
 
 

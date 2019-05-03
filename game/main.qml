@@ -21,5 +21,5 @@ Item {
     MainMenuButton {
         id: mainMenuButton
         visible: false
-    }
+    } 
 }

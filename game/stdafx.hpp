@@ -64,3 +64,6 @@
 #include <Qt3DExtras/QPlaneMesh>
 #include <Qt3DExtras/QSphereMesh>
 #include <Qt3DExtras/QPhongMaterial>
+
+#include <QMessageBox>
+#include <QQmlContext>
