@@ -7,11 +7,13 @@
         <file>assets/carpet.png</file>
         <file>assets/room.obj</file>
         <file>assets/room.png</file>
+        <file>assets/ceiling.obj</file>
+        <file>assets/ceiling.png</file>
+        <file>assets/grid.obj</file>
+        <file>assets/grid.png</file>
         <file>assets/table.obj</file>
         <file>assets/table.png</file>
-        <file>assets/walls.obj</file>
-        <file>assets/walls.png</file>
-	<file>assets/ceiling.obj</file>
-        <file>assets/ceiling.png</file>
+        <file>assets/racket.png</file>
+        <file>assets/racket.obj</file>
     </qresource>
 </RCC>
