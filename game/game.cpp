@@ -15,3 +15,15 @@ void Game::init(Qt3DCore::QEntity * root, Qt3DRender::QCamera * camera)
     auto * camController = new Qt3DExtras::QFirstPersonCameraController(root);
     camController->setCamera(camera_);
 }
+
+
+void Game::singlePlayer()
+{
+    qDebug() << "Singleplayer";
+}
+
+
+void Game::multiplayer()
+{
+    qDebug() << "Multiplayer";
+}

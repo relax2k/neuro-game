@@ -1,35 +1,35 @@
 #include "stdafx.hpp"
 
 #include "game.hpp"
-#include "systems/move/moveaspect.hpp"
 #include "mainmenucontroller.hpp"
+
 
 int main(int argc, char * argv[])
 {
     QApplication app(argc, argv);
 
-    Qt3DExtras::Qt3DWindow * view = new Qt3DExtras::Qt3DWindow();
-    view->defaultFrameGraph()->setClearColor(QColor(QRgb(0x2D9EB5)));
+    Qt3DExtras::Qt3DWindow * view3d = new Qt3DExtras::Qt3DWindow();
+    view3d->defaultFrameGraph()->setClearColor(QColor(QRgb(0x2D9EB5)));
 
     Qt3DCore::QEntity * rootEntity = new Qt3DCore::QEntity();
-    view->setRootEntity(rootEntity);
+    view3d->setRootEntity(rootEntity);
 
-    QWidget * container = QWidget::createWindowContainer(view);
-    QSize screenSize = view->screen()->size();
+    QWidget * container = QWidget::createWindowContainer(view3d);
+    QSize screenSize = view3d->screen()->size();
     container->setMinimumSize(QSize(200, 100));
     container->setMaximumSize(screenSize);
 
     // QML menu init
-    QQuickWidget * menuView = new QQuickWidget;            
+    QQuickWidget * menuView = new QQuickWidget;
 
+    // If You like to replace 6, You should also replace some constants at main.qml
+    // TODO
     menuView->setMaximumSize(QSize(screenSize.width() / 6, screenSize.height()));
-    //if You like to replace 6, You should also replace some constants at main.qml
     menuView->setMinimumSize(QSize(200, 100));
     menuView->setSource(QUrl("qrc:/main.qml"));
-    //QObject::connect(menuView->engine(), &QQmlEngine::quit,
-    //                 &app, &QGuiApplication::quit);
 
     //create controller to link qml buttons with c++ code
+    // TODO
     MainMenuController * menuController = new MainMenuController();
 
     qmlRegisterSingletonType<Game>("Engine.Core", 1, 0, "Engine",
@@ -38,28 +38,26 @@ int main(int argc, char * argv[])
         Q_UNUSED(engine)
         Q_UNUSED(scriptEngine)
         return Game::instance();
-    });      
+    });
 
     //link controller to qml
     menuView->rootContext()->setContextProperty("cppController", menuController);
 
     //link quit button to quit
-    QObject::connect(menuView->engine(), SIGNAL(quit()), QCoreApplication::instance(), SLOT(quit()));
+    QObject::connect(menuView->engine(), SIGNAL(quit()),
+                     QCoreApplication::instance(), SLOT(quit()));
     // end QML menu init
 
 
     QWidget * widget = new QWidget;
     QHBoxLayout * hLayout = new QHBoxLayout(widget);
 
-    //This order is so important, don't touch it!
+    // This order is so important, don't touch it!
     hLayout->addWidget(container); // right column
     hLayout->addWidget(menuView);  // left column
 
 
-    view->registerAspect(new MoveAspect);
-
-
-    Game::instance()->init(rootEntity, view->camera());
+    Game::instance()->init(rootEntity, view3d->camera());
 
     widget->setWindowTitle(QStringLiteral("Brain tennis"));
     widget->show();

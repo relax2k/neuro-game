@@ -1,13 +1,14 @@
 import QtQuick 2.6
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
+import Engine.Core 1.0
 
 Item {
 
     id: root
     anchors.centerIn: parent
     width: parent.width
-    height: parent.height    
+    height: parent.height
 
     Rectangle {
         id:rect
@@ -30,7 +31,7 @@ Item {
             text: "Singleplayer"
             font.pointSize: root.width / 15
             width: parent.width
-            onClicked: { cppController.singlePlayrButtClickd() }
+//            onClicked: { Engine.singlePlayer() }
         }
 
         Button {
@@ -39,7 +40,7 @@ Item {
             text: "Multiplayer"
             font.pointSize: root.width / 15
             width: parent.width
-            onClicked: { cppController.multiPlayrButtClickd() }
+//            onClicked: { cppController.multiPlayrButtClickd() }
         }
 
         Button {
@@ -47,9 +48,9 @@ Item {
             Layout.alignment: Qt.AlignCenter
             text: "Settings"
             font.pointSize: root.width / 15
-            width: parent.width                        
+            width: parent.width
 
-            onClicked: { cppController.settngsButtClickd() }
+//            onClicked: { cppController.settngsButtClickd() }
         }
 
         Button {
@@ -58,7 +59,7 @@ Item {
             text: "Exit"
             font.pointSize: root.width / 15
             width: parent.width
-            onClicked: Qt.quit()          
+            onClicked: Qt.quit()
         }
     }
 }

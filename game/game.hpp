@@ -14,8 +14,9 @@ public:
     explicit Game(QObject * parent = nullptr) : QObject(parent) {}
     void init(Qt3DCore::QEntity * rootEntity, Qt3DRender::QCamera * camera);
 
-private:
-    virtual ~Game() = default;
+public slots:
+    Q_INVOKABLE void singlePlayer();
+    Q_INVOKABLE void multiplayer();
 
 private:
     Qt3DCore::QEntity   * rootEntity_ = nullptr;
