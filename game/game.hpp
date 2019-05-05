@@ -20,6 +20,9 @@ public slots:
     Q_INVOKABLE void multiplayer();
 
 private:
+    void delCamFly();
+
+private:
     Qt3DCore::QEntity    * rootEntity_;
     Qt3DRender::QCamera  * camera_;
     std::unique_ptr<Scene> scene_;

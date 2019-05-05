@@ -37,3 +37,13 @@ void Game::multiplayer()
 {
     qDebug() << "Multiplayer";
 }
+
+
+void Game::delCamFly()
+{
+    if (camFly_) {
+        delete camFly_.release();
+    }
+}
+
+
