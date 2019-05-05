@@ -2,6 +2,7 @@
 
 #include "stdafx.hpp"
 #include "scene.hpp"
+#include "camflyingaround.hpp"
 
 
 class Game
@@ -14,6 +15,7 @@ public:
     void init(Qt3DCore::QEntity * rootEntity, Qt3DRender::QCamera * camera);
 
 public slots:
+    Q_INVOKABLE void gotoMainMenu();
     Q_INVOKABLE void singlePlayer();
     Q_INVOKABLE void multiplayer();
 
@@ -21,4 +23,6 @@ private:
     Qt3DCore::QEntity    * rootEntity_;
     Qt3DRender::QCamera  * camera_;
     std::unique_ptr<Scene> scene_;
+
+    std::unique_ptr<CamFlyingAround> camFly_;
 };

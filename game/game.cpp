@@ -11,13 +11,19 @@ Game::Game(Qt3DCore::QEntity * root,
     assert(root);
     assert(camera);
 
-    // TODO(cam pos)
-    camera_->setPosition({20, 2, 0});
-    camera_->setViewCenter({0, 0, 0});
-    camera_->setUpVector({0, 1, 0});
+    gotoMainMenu();
 
-    auto * camController = new Qt3DExtras::QFirstPersonCameraController(root);
-    camController->setCamera(camera_);
+//    auto * camController = new Qt3DExtras::QFirstPersonCameraController(root);
+//    camController->setCamera(camera_);
+}
+
+
+void Game::gotoMainMenu()
+{
+    camera_->setPosition({20, 8, 0});
+    camera_->setViewCenter({0, 3, 0});
+    camera_->setUpVector({0, 1, 0});
+    camFly_ = std::make_unique<CamFlyingAround>(camera_, 20);
 }
 
 
