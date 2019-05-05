@@ -17,13 +17,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp \
     scene.cpp \
     game.cpp \
-    mainmenucontroller.cpp
 
 HEADERS += \
     stdafx.hpp \
     scene.hpp \
     game.hpp \
-    mainmenucontroller.hpp
 
 PRECOMPILED_HEADER = stdafx.hpp
 

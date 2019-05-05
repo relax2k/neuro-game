@@ -1,7 +1,6 @@
 #include "stdafx.hpp"
 
 #include "game.hpp"
-#include "mainmenucontroller.hpp"
 
 
 int main(int argc, char * argv[])
@@ -19,6 +18,7 @@ int main(int argc, char * argv[])
     container->setMinimumSize(QSize(200, 100));
     container->setMaximumSize(screenSize);
 
+
     // QML menu init
     QQuickWidget * menuView = new QQuickWidget;
 
@@ -28,24 +28,9 @@ int main(int argc, char * argv[])
     menuView->setMinimumSize(QSize(200, 100));
     menuView->setSource(QUrl("qrc:/main.qml"));
 
-    //create controller to link qml buttons with c++ code
-    // TODO
-    MainMenuController * menuController = new MainMenuController();
-
-    qmlRegisterSingletonType<Game>("Engine.Core", 1, 0, "Engine",
-                                   [](QQmlEngine * engine,
-                                      QJSEngine  * scriptEngine) -> QObject * {
-        Q_UNUSED(engine)
-        Q_UNUSED(scriptEngine)
-        return Game::instance();
-    });
-
-    //link controller to qml
-    menuView->rootContext()->setContextProperty("cppController", menuController);
-
     //link quit button to quit
-    QObject::connect(menuView->engine(), SIGNAL(quit()),
-                     QCoreApplication::instance(), SLOT(quit()));
+    QObject::connect(menuView->engine(), &QQmlEngine::quit,
+                     QCoreApplication::instance(), &QCoreApplication::quit);
     // end QML menu init
 
 
@@ -56,8 +41,8 @@ int main(int argc, char * argv[])
     hLayout->addWidget(container); // right column
     hLayout->addWidget(menuView);  // left column
 
-
-    Game::instance()->init(rootEntity, view3d->camera());
+    auto game = new Game(rootEntity, view3d->camera());
+    menuView->rootContext()->setContextProperty("Game", game);
 
     widget->setWindowTitle(QStringLiteral("Brain tennis"));
     widget->show();
@@ -65,3 +50,15 @@ int main(int argc, char * argv[])
 
     return QGuiApplication::exec();
 }
+
+
+
+
+
+
+
+
+
+
+
+

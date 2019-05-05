@@ -1,7 +1,7 @@
 import QtQuick 2.6
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
-import Engine.Core 1.0
+
 
 Item {
 
@@ -31,7 +31,7 @@ Item {
             text: "Singleplayer"
             font.pointSize: root.width / 15
             width: parent.width
-//            onClicked: { Engine.singlePlayer() }
+            onClicked: { Game.singlePlayer() }
         }
 
         Button {
@@ -40,7 +40,7 @@ Item {
             text: "Multiplayer"
             font.pointSize: root.width / 15
             width: parent.width
-//            onClicked: { cppController.multiPlayrButtClickd() }
+            onClicked: { Game.multiplayer() }
         }
 
         Button {
