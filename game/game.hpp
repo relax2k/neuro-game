@@ -9,9 +9,8 @@ class Game
     Q_OBJECT
 
 public:
-    static Game * instance();
-
-    explicit Game(QObject * parent = nullptr) : QObject(parent) {}
+    explicit Game(Qt3DCore::QEntity * root,
+                  Qt3DRender::QCamera * camera, QObject * parent = nullptr);
     void init(Qt3DCore::QEntity * rootEntity, Qt3DRender::QCamera * camera);
 
 public slots:
@@ -19,13 +18,7 @@ public slots:
     Q_INVOKABLE void multiplayer();
 
 private:
-    Qt3DCore::QEntity   * rootEntity_ = nullptr;
-    Qt3DRender::QCamera * camera_     = nullptr;
+    Qt3DCore::QEntity    * rootEntity_;
+    Qt3DRender::QCamera  * camera_;
     std::unique_ptr<Scene> scene_;
 };
-
-
-inline Game * Game::instance() {
-    static Game * inst = new Game;
-    return inst;
-}

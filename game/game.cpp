@@ -1,11 +1,15 @@
 #include "game.hpp"
 
 
-void Game::init(Qt3DCore::QEntity * root, Qt3DRender::QCamera * camera)
+Game::Game(Qt3DCore::QEntity * root,
+           Qt3DRender::QCamera * camera, QObject * parent)
+    : QObject    (parent)
+    , rootEntity_(root)
+    , camera_    (camera)
+    , scene_     (std::make_unique<Scene>(root))
 {
-    rootEntity_ = root;
-    camera_     = camera;
-    scene_      = std::make_unique<Scene>(root);
+    assert(root);
+    assert(camera);
 
     // TODO(cam pos)
     camera_->setPosition({20, 2, 0});
