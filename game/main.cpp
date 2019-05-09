@@ -2,6 +2,7 @@
 
 #include "game.hpp"
 
+#include "playmenuscores.hpp"
 
 int main(int argc, char * argv[])
 {
