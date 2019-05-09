@@ -16,8 +16,8 @@ Item {
         visible: true
     }
 
-    MainMenuButton {
-        id: mainMenuButton
-        visible: false
-    }
+        SingleplayerMenu {
+        id: singleplayerMenu
+        visible: false        
+    } 
 }
