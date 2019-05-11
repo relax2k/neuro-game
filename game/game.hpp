@@ -32,7 +32,11 @@ signals:
     void scoreChanged(Score newScore);
 
 private:
+    void camPlayPos();
+
     void delCamFly();
+    void delRackets();
+    void delBall();
 
 private:
     Score score_{};
@@ -40,6 +44,10 @@ private:
     Qt3DCore::QEntity    * rootEntity_;
     Qt3DRender::QCamera  * camera_;
     std::unique_ptr<Scene> scene_;
+
+    Qt3DCore::QEntity * racket1_{};
+    Qt3DCore::QEntity * racket2_{};
+    Qt3DCore::QEntity * ball_{};
 
     std::unique_ptr<CamFlyingAround> camFly_;
 };

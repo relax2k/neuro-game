@@ -8,11 +8,29 @@ Scene::Scene(Qt3DCore::QEntity * root)
     , carpet_    (createCarpet())
     , ceiling_   (createCeiling())
     , grid_      (createGrid())
-    , racket1_   (createRacket(0.0, 5.0, 5.0))
-    , racket2_   (createRacket(0.0, -5.0, 5.0))
     , light_     (createLights())
 {
     assert(rootEntity_);
+}
+
+
+Qt3DCore::QEntity * Scene::createBall() const
+{
+    auto mesh = new Qt3DExtras::QSphereMesh;
+
+    auto material = new Qt3DExtras::QPhongMaterial;
+    material->setDiffuse(QColor(0x00AAFF));
+
+    auto transform = new Qt3DCore::QTransform;
+    transform->setTranslation({1, 5, 1});
+    transform->setScale(0.2f);
+
+    auto ball = new Qt3DCore::QEntity(rootEntity_);
+    ball->addComponent(mesh);
+    ball->addComponent(material);
+    ball->addComponent(transform);
+
+    return ball;
 }
 
 
