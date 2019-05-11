@@ -41,8 +41,7 @@ int main(int argc, char * argv[])
     hLayout->addWidget(menuView);  // left column
 
     auto game = new Game(rootEntity, view3d->camera());
-    //Game score counter    
-    menuView->rootContext()->setContextProperty("Game", game);    
+    menuView->rootContext()->setContextProperty("Game", game);
 
     widget->setWindowTitle(QStringLiteral("Brain tennis"));
     widget->show();

@@ -4,14 +4,15 @@ import QtQuick.Layouts 1.12
 
 
 Item {
+
     id: root
     anchors.centerIn: parent
     width: parent.width * 0.8
 
     Connections {
         target: Game
-        onScSet: {
-            scoreText.text = "Score: " + Game.scoreGetRequest()
+        onScoreChanged: {
+            scoreText.text = "Score: " + Game.score1() + " / " + Game.score2()
         }
     }
 
@@ -38,26 +39,15 @@ Item {
             font.pointSize: root.width / 10
             width: parent.width
             onClicked: {
-                cppController.mainMenuButtClickd()
+                Game.gotoMainMenu();
                 singleplayerMenu.visible = false
                 mainMenu.visible = true
             }
         }
-        //Button to test signal connected
-        //Button {
-        //    id: singlePlayerButtonTestScore
-        //    Layout.alignment: Qt.AlignCenter
-        //    opacity: 0.9
-        //    text: "Set 500"
-        //    font.pointSize: root.width / 10
-        //    width: parent.width
-        //    onClicked: {
-        //        Game.setScore(500)
-        //    }
-        //}
+
         Text {
             id: scoreText
-            text: "Score: " + Game.getRequest()
+            text: "Score: " + Game.score1() + " / " + Game.score2()
             font.family: "Helvetica"
             font.pointSize: root.width / 15
             width: parent.width

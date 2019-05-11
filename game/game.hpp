@@ -10,29 +10,33 @@ class Game
     Q_OBJECT
 
 public:
+    using Score = std::pair<int, int>;
+
     explicit Game(Qt3DCore::QEntity * root,
                   Qt3DRender::QCamera * camera, QObject * parent = nullptr);
-    void init(Qt3DCore::QEntity * rootEntity, Qt3DRender::QCamera * camera);
 
-    //scores
-    void addScore(int val);
-    void setScore(int val);
-    int getScore();
+    void addScore(Score delta);
+    void setScore(Score val);
+    Score score() const;
 
-signals:
-    void scoreChanged();
 public slots:
     Q_INVOKABLE void gotoMainMenu();
     Q_INVOKABLE void singlePlayer();
     Q_INVOKABLE void multiplayer();
 
-    Q_INVOKABLE int scoreGetRequest();
+    // Attempts to access cpp struct from qml failed
+    Q_INVOKABLE int score1() const;
+    Q_INVOKABLE int score2() const;
+
+signals:
+    void scoreChanged(Score newScore);
 
 private:
     void delCamFly();
 
 private:
-    int score;
+    Score score_{};
+
     Qt3DCore::QEntity    * rootEntity_;
     Qt3DRender::QCamera  * camera_;
     std::unique_ptr<Scene> scene_;

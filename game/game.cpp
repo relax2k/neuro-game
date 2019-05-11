@@ -4,10 +4,9 @@
 Game::Game(Qt3DCore::QEntity * root,
            Qt3DRender::QCamera * camera, QObject * parent)
     : QObject    (parent)
-    , score(0)
-    , rootEntity_(root)    
-    , camera_    (camera)  
-    , scene_     (std::make_unique<Scene>(root))    
+    , rootEntity_(root)
+    , camera_    (camera)
+    , scene_     (std::make_unique<Scene>(root))
 {
     assert(root);
     assert(camera);
@@ -31,6 +30,7 @@ void Game::gotoMainMenu()
 void Game::singlePlayer()
 {
     qDebug() << "Singleplayer";
+    setScore({0, 0});
 }
 
 
@@ -47,24 +47,50 @@ void Game::delCamFly()
     }
 }
 
-void Game::addScore(int val)
+
+void Game::addScore(Score val)
 {
-    score += val;
-    emit scoreChanged();
+    score_.first  += val.first;
+    score_.second += val.second;
+    emit scoreChanged(score_);
 }
 
-void Game::setScore(int val)
+
+void Game::setScore(Score val)
 {
-    score = val;
-    emit scoreChanged();
+    score_ = val;
+    emit scoreChanged(score_);
 }
 
-int Game::getScore()
+
+Game::Score Game::score() const
 {
-    return score;
+    return score_;
 }
 
-int Game::scoreGetRequest()
+
+int Game::score1() const
 {
-    return getScore();
+    return score_.first;
 }
+
+
+int Game::score2() const
+{
+    return score_.second;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
