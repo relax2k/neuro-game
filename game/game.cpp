@@ -4,9 +4,10 @@
 Game::Game(Qt3DCore::QEntity * root,
            Qt3DRender::QCamera * camera, QObject * parent)
     : QObject    (parent)
-    , rootEntity_(root)
-    , camera_    (camera)
-    , scene_     (std::make_unique<Scene>(root))
+    , score(0)
+    , rootEntity_(root)    
+    , camera_    (camera)  
+    , scene_     (std::make_unique<Scene>(root))    
 {
     assert(root);
     assert(camera);
@@ -46,4 +47,24 @@ void Game::delCamFly()
     }
 }
 
+void Game::addScore(int val)
+{
+    score += val;
+    emit scoreChanged();
+}
 
+void Game::setScore(int val)
+{
+    score = val;
+    emit scoreChanged();
+}
+
+int Game::getScore()
+{
+    return score;
+}
+
+int Game::scoreGetRequest()
+{
+    return getScore();
+}

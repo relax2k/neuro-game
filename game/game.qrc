@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>MainMenu.qml</file>
-        <file>MainMenuButton.qml</file>
+        <file>SingleplayerMenu.qml</file>
         <file>main.qml</file>
         <file>assets/carpet.obj</file>
         <file>assets/carpet.png</file>

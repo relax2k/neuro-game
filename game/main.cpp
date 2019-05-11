@@ -2,8 +2,6 @@
 
 #include "game.hpp"
 
-#include "playmenuscores.hpp"
-
 int main(int argc, char * argv[])
 {
     QApplication app(argc, argv);
@@ -43,10 +41,8 @@ int main(int argc, char * argv[])
     hLayout->addWidget(menuView);  // left column
 
     auto game = new Game(rootEntity, view3d->camera());
-    //Game score counter
-    PlayMenuScores * score = new PlayMenuScores(0);
-    menuView->rootContext()->setContextProperty("Game", game);
-    menuView->rootContext()->setContextProperty("score", score);
+    //Game score counter    
+    menuView->rootContext()->setContextProperty("Game", game);    
 
     widget->setWindowTitle(QStringLiteral("Brain tennis"));
     widget->show();

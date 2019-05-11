@@ -9,9 +9,9 @@ Item {
     width: parent.width * 0.8
 
     Connections {
-        target: score
+        target: Game
         onScSet: {
-            scoreText.text = "Score: " + score.getRequest()
+            scoreText.text = "Score: " + Game.scoreGetRequest()
         }
     }
 
@@ -45,19 +45,19 @@ Item {
         }
         //Button to test signal connected
         //Button {
-        //    id: singlePlayerButton2
+        //    id: singlePlayerButtonTestScore
         //    Layout.alignment: Qt.AlignCenter
         //    opacity: 0.9
         //    text: "Set 500"
         //    font.pointSize: root.width / 10
         //    width: parent.width
         //    onClicked: {
-        //        score.setScoreSlot(500)
+        //        Game.setScore(500)
         //    }
         //}
         Text {
             id: scoreText
-            text: "Score: " + score.getRequest()
+            text: "Score: " + Game.getRequest()
             font.family: "Helvetica"
             font.pointSize: root.width / 15
             width: parent.width

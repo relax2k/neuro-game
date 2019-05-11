@@ -14,15 +14,25 @@ public:
                   Qt3DRender::QCamera * camera, QObject * parent = nullptr);
     void init(Qt3DCore::QEntity * rootEntity, Qt3DRender::QCamera * camera);
 
+    //scores
+    void addScore(int val);
+    void setScore(int val);
+    int getScore();
+
+signals:
+    void scoreChanged();
 public slots:
     Q_INVOKABLE void gotoMainMenu();
     Q_INVOKABLE void singlePlayer();
     Q_INVOKABLE void multiplayer();
 
+    Q_INVOKABLE int scoreGetRequest();
+
 private:
     void delCamFly();
 
 private:
+    int score;
     Qt3DCore::QEntity    * rootEntity_;
     Qt3DRender::QCamera  * camera_;
     std::unique_ptr<Scene> scene_;

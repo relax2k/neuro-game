@@ -18,14 +18,12 @@ SOURCES += main.cpp \
     camflyingaround.cpp \
     scene.cpp \
     game.cpp \
-    playmenuscores.cpp \
 
 HEADERS += \
     camflyingaround.hpp \
     stdafx.hpp \
     scene.hpp \
     game.hpp \
-    playmenuscores.hpp \
 
 PRECOMPILED_HEADER = stdafx.hpp
 
