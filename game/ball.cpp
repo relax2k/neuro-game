@@ -92,13 +92,14 @@ void Ball::timerEvent(QTimerEvent * event)
 void Ball::applyGravity()
 {
     assert(gravity_);
-    // TODO
+    v_ += g_ * dt_;
 }
 
 
 void Ball::move()
 {
-    // TODO
+    auto pos = transform_->translation();
+    transform_->setTranslation(pos + dt_ * v_);
 }
 
 

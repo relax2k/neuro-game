@@ -50,6 +50,8 @@ void Game::singlePlayer()
     racket2_->setPos({-5.0, 5.0, 0.0});
 
     ball_ = new Ball(rootEntity_);
+    ball_->setV({-0.001f, 0, 0});
+    ball_->setGravity(false);
 }
 
 

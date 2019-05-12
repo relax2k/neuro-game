@@ -11,6 +11,7 @@ public:
 
 public:
      constexpr static const float SCALE = 0.005f;
+//    constexpr static const float SCALE = 0.01;
 
 private:
     Qt3DCore::QEntity * createTable()  const;

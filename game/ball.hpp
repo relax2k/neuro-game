@@ -18,7 +18,7 @@ public:
     void setV(QVector3D v);
     QVector3D v() const;
 
-    void setGravity(bool b = true);
+    void setGravity(bool b);
     bool gravity() const;
 
     void setPos(QVector3D pos);
@@ -30,12 +30,12 @@ private:
     void move();
 
 private:
-    const float g_ = 9.8f;
+    const QVector3D g_ = { 0, -0.0000049f, 0 };
 
     Qt3DCore::QEntity    * entity_;
     Qt3DCore::QTransform * transform_;
 
     QVector3D v_{};
-    bool gravity_ = true;
+    bool gravity_ = false;
     int dt_;
 };
