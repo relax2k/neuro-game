@@ -18,12 +18,14 @@ public:
 
     void setV(QVector3D v);
     QVector3D v() const;
-
     void setGravity(bool b);
     bool gravity() const;
-
+    int dt() const;
     void setPos(QVector3D pos);
     QVector3D pos() const;
+    float radius() const;
+
+    void reflect(QVector3D n);
 
 private:
     void timerEvent(QTimerEvent * event) override;
@@ -41,4 +43,5 @@ private:
     QVector3D v_{};
     bool gravity_ = false;
     int dt_;
+    float radius_ = 20 * Scene::SCALE;
 };

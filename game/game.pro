@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp \
     ball.cpp \
     camflyingaround.cpp \
+    collisions.cpp \
     racket.cpp \
     scene.cpp \
     game.cpp \
@@ -24,6 +25,7 @@ SOURCES += main.cpp \
 HEADERS += \
     ball.hpp \
     camflyingaround.hpp \
+    collisions.hpp \
     defs.hpp \
     racket.hpp \
     stdafx.hpp \

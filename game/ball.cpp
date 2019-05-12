@@ -65,6 +65,12 @@ bool Ball::gravity() const
 }
 
 
+int Ball::dt() const
+{
+    return dt_;
+}
+
+
 void Ball::setPos(QVector3D pos)
 {
     assert(transform_);
@@ -75,6 +81,19 @@ void Ball::setPos(QVector3D pos)
 QVector3D Ball::pos() const
 {
     return transform_->translation();
+}
+
+
+float Ball::radius() const
+{
+    return radius_;
+}
+
+
+void Ball::reflect(QVector3D n)
+{
+    assert(!n.isNull());
+    v_ = v_ - 2 * (v_ * n) * n;
 }
 
 
@@ -98,8 +117,7 @@ void Ball::applyGravity()
 
 void Ball::move()
 {
-    auto pos = transform_->translation();
-    transform_->setTranslation(pos + toSec(dt_) * v_);
+    transform_->setTranslation(pos() + toSec(dt_) * v_);
 }
 
 
