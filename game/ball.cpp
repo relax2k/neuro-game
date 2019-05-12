@@ -92,17 +92,21 @@ void Ball::timerEvent(QTimerEvent * event)
 void Ball::applyGravity()
 {
     assert(gravity_);
-    v_ += g_ * dt_;
+    v_ += g_ * toSec(dt_); // To seconds
 }
 
 
 void Ball::move()
 {
     auto pos = transform_->translation();
-    transform_->setTranslation(pos + dt_ * v_);
+    transform_->setTranslation(pos + toSec(dt_) * v_);
 }
 
 
+float Ball::toSec(int t) const
+{
+    return t / 1000.0f;
+}
 
 
 

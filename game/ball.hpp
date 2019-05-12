@@ -2,6 +2,7 @@
 
 #include "stdafx.hpp"
 #include "defs.hpp"
+#include "scene.hpp"
 
 
 class Ball final
@@ -29,8 +30,10 @@ private:
     void applyGravity();
     void move();
 
+    float toSec(int t) const;
+
 private:
-    const QVector3D g_ = { 0, -0.0000049f, 0 };
+    const QVector3D g_ = QVector3D{ 0, -980, 0 } * Scene::SCALE;
 
     Qt3DCore::QEntity    * entity_;
     Qt3DCore::QTransform * transform_;
