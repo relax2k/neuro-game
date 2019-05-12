@@ -1,5 +1,7 @@
 #include "ball.hpp"
 
+#include "scene.hpp"
+
 
 Ball::Ball(Qt3DCore::QEntity * parent, int dt)
     : entity_   (new Qt3DCore::QEntity(parent))
@@ -9,18 +11,24 @@ Ball::Ball(Qt3DCore::QEntity * parent, int dt)
     assert(parent);
     assert(dt > 0);
 
-    auto mesh = new Qt3DExtras::QSphereMesh;
+    auto mesh = new Qt3DRender::QMesh;
+    mesh->setSource({ASSETS "ball.obj"});
 
-    auto material = new Qt3DExtras::QPhongMaterial;
-    material->setDiffuse(QColor(0x00AAFF));
+    auto * textureLoader = new Qt3DRender::QTextureLoader;
+    textureLoader->setSource({ASSETS "ball.png"});
+
+    auto * textures = new Qt3DExtras::QDiffuseMapMaterial;
+    textures->setDiffuse(textureLoader);
+    textures->setSpecular({0, 0, 0});
+    textures->setAmbient({100, 100, 100});
 
     assert(transform_);
-    transform_->setScale(0.2f);
+    transform_->setScale(Scene::SCALE);
     setPos({1, 5, 1});
 
     assert(entity_);
     entity_->addComponent(mesh);
-    entity_->addComponent(material);
+    entity_->addComponent(textures);
     entity_->addComponent(transform_);
 
     startTimer(dt);

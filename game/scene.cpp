@@ -53,7 +53,7 @@ Qt3DCore::QEntity * Scene::createRoom() const
     mesh->setSource({ASSETS "room.obj"});
 
     auto * textureLoader = new Qt3DRender::QTextureLoader;
-    textureLoader->setSource({ASSETS "room.png"});
+    textureLoader->setSource({ASSETS "room.jpg"});
     auto * textures = new Qt3DExtras::QDiffuseMapMaterial;
     textures->setDiffuse(textureLoader);
     textures->setSpecular({0,0,0});
@@ -155,7 +155,7 @@ QVector<Qt3DCore::QEntity *> Scene::createLights() const
     auto * light4 = createLight({-10, 10, 3});
 
 
-    return { light1, light2, light3, light4};
+    return { light1, light2, light3, light4 };
 }
 
 
