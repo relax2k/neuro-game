@@ -1,5 +1,8 @@
 #include "game.hpp"
 
+#include "ball.hpp"
+#include "racket.hpp"
+
 
 Game::Game(Qt3DCore::QEntity * root,
            Qt3DRender::QCamera * camera, QObject * parent)
@@ -35,14 +38,18 @@ void Game::singlePlayer()
     qDebug() << "Singleplayer";
     setScore({0, 0});
 
-    assert(!racket1_ && !racket2_);
-
     delCamFly();
     camPlayPos();
 
-    racket1_ = scene_->createRacket(0.0, 5.0, 5.0);
-    racket2_ = scene_->createRacket(0.0, -5.0, 5.0);
-    ball_ = scene_->createBall();
+    assert(!racket1_ && !racket2_);
+    assert(!ball_);
+
+    racket1_ = new Racket(rootEntity_);
+    racket1_->setPos({5.0, 5.0, 0.0});
+    racket2_ = new Racket(rootEntity_);
+    racket2_->setPos({-5.0, 5.0, 0.0});
+
+    ball_ = new Ball(rootEntity_);
 }
 
 

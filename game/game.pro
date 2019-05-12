@@ -15,12 +15,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += main.cpp \
+    ball.cpp \
     camflyingaround.cpp \
+    racket.cpp \
     scene.cpp \
     game.cpp \
 
 HEADERS += \
+    ball.hpp \
     camflyingaround.hpp \
+    defs.hpp \
+    racket.hpp \
     stdafx.hpp \
     scene.hpp \
     game.hpp \

@@ -14,55 +14,6 @@ Scene::Scene(Qt3DCore::QEntity * root)
 }
 
 
-Qt3DCore::QEntity * Scene::createBall() const
-{
-    auto mesh = new Qt3DExtras::QSphereMesh;
-
-    auto material = new Qt3DExtras::QPhongMaterial;
-    material->setDiffuse(QColor(0x00AAFF));
-
-    auto transform = new Qt3DCore::QTransform;
-    transform->setTranslation({1, 5, 1});
-    transform->setScale(0.2f);
-
-    auto ball = new Qt3DCore::QEntity(rootEntity_);
-    ball->addComponent(mesh);
-    ball->addComponent(material);
-    ball->addComponent(transform);
-
-    return ball;
-}
-
-
-Qt3DCore::QEntity * Scene::createRacket(float const x,
-                                        float const y,
-                                        float const z) const
-{
-    auto * transform = new Qt3DCore::QTransform;
-    transform->setTranslation({y, z, x});
-    transform->setScale(SCALE);
-    transform->setRotation(
-                QQuaternion::fromAxisAndAngle(QVector3D(0, 1, 0), 90));
-
-    auto * mesh = new Qt3DRender::QMesh;
-    mesh->setSource({ASSETS "racket.obj"});
-
-    auto * textureLoader = new Qt3DRender::QTextureLoader;
-    textureLoader->setSource({ASSETS "racket.png"});
-    auto * textures = new Qt3DExtras::QDiffuseMapMaterial;
-    textures->setDiffuse(textureLoader);
-    textures->setSpecular({0, 0, 0});
-    textures->setAmbient({100, 100, 100});
-
-    auto * racket = new Qt3DCore::QEntity(rootEntity_);
-    racket->addComponent(transform);
-    racket->addComponent(mesh);
-    racket->addComponent(textures);
-
-    return racket;
-}
-
-
 Qt3DCore::QEntity * Scene::createTable() const
 {
     auto * transform = new Qt3DCore::QTransform;

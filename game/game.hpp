@@ -5,6 +5,10 @@
 #include "camflyingaround.hpp"
 
 
+class Ball;
+class Racket;
+
+
 class Game
         : public QObject {
     Q_OBJECT
@@ -44,10 +48,9 @@ private:
     Qt3DCore::QEntity    * rootEntity_;
     Qt3DRender::QCamera  * camera_;
     std::unique_ptr<Scene> scene_;
-
-    Qt3DCore::QEntity * racket1_{};
-    Qt3DCore::QEntity * racket2_{};
-    Qt3DCore::QEntity * ball_{};
-
     std::unique_ptr<CamFlyingAround> camFly_;
+
+    Ball   * ball_{};
+    Racket * racket1_{};
+    Racket * racket2_{};
 };
