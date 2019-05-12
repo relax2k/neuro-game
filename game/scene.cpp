@@ -8,11 +8,41 @@ Scene::Scene(Qt3DCore::QEntity * root)
     , carpet_    (createCarpet())
     , ceiling_   (createCeiling())
     , grid_      (createGrid())
-    , racket1_   (createRacket(0.0, 5.0, 5.0))
-    , racket2_   (createRacket(0.0, -5.0, 5.0))
+    , racket1_   (createRacket(0.0, 7.0, 5.0))
+    , racket2_   (createRacket(0.0, -7.0, 5.0))
+    , ball_      (createBall(0.0, 0.0, 5.5))
     , light_     (createLights())
 {
     assert(rootEntity_);
+}
+
+
+Qt3DCore::QEntity * Scene::createBall(float const x,
+                                        float const y,
+                                        float const z) const
+{
+    auto * transform = new Qt3DCore::QTransform;
+    transform->setTranslation({y, z, x});
+    transform->setScale(SCALE);
+    transform->setRotation(
+                QQuaternion::fromAxisAndAngle(QVector3D(0, 1, 0), 90));
+
+    auto * mesh = new Qt3DRender::QMesh;
+    mesh->setSource({ASSETS "ball.obj"});
+
+    auto * textureLoader = new Qt3DRender::QTextureLoader;
+    textureLoader->setSource({ASSETS "ball.png"});
+    auto * textures = new Qt3DExtras::QDiffuseMapMaterial;
+    textures->setDiffuse(textureLoader);
+    textures->setSpecular({0, 0, 0});
+    textures->setAmbient({100, 100, 100});
+
+    auto * ball = new Qt3DCore::QEntity(rootEntity_);
+    ball->addComponent(transform);
+    ball->addComponent(mesh);
+    ball->addComponent(textures);
+
+    return ball;
 }
 
 
@@ -84,7 +114,7 @@ Qt3DCore::QEntity * Scene::createRoom() const
     mesh->setSource({ASSETS "room.obj"});
 
     auto * textureLoader = new Qt3DRender::QTextureLoader;
-    textureLoader->setSource({ASSETS "room.png"});
+    textureLoader->setSource({ASSETS "room.jpg"});
     auto * textures = new Qt3DExtras::QDiffuseMapMaterial;
     textures->setDiffuse(textureLoader);
     textures->setSpecular({0,0,0});
@@ -186,7 +216,7 @@ QVector<Qt3DCore::QEntity *> Scene::createLights() const
     auto * light4 = createLight({-10, 10, 3});
 
 
-    return { light1, light2, light3, light4};
+    return { light1, light2, light3, light4 };
 }
 
 
