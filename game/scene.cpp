@@ -20,7 +20,6 @@ std::optional<QVector3D> Scene::intersectsWithTable(Ball const * ball) const
 {
     const float tableHeight = 3.86f;
 
-    qDebug() << "Reflect! " << ball->pos().y();
     if (ball->pos().y() - ball->radius() <= tableHeight &&
             inTable(ball->pos())) {
         return { QVector3D(0, 1, 0) };

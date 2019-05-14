@@ -51,7 +51,7 @@ void Game::singlePlayer()
     racket2_->setPos({-5.0, 5.0, 0.0});
 
     ball_ = new Ball(rootEntity_);
-    ball_->setPos({10.0, 5.0, -1.0});
+    ball_->setPos({9.0, 5.0, -1.0});
     ball_->setV({-5.1f, 0, 0});
     ball_->setGravity(true);
     new Collisions(ball_, scene_.get());
