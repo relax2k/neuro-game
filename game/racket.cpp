@@ -45,3 +45,32 @@ QVector3D Racket::pos() const
 {
     return transform_->translation();
 }
+
+
+void Racket::runAnimation1(QVector3D endPos, int time)
+{
+    Q_UNUSED(endPos)
+    Q_UNUSED(time)
+
+    // TODO Racket::runAnimation1
+}
+
+
+void Racket::runAnimation2(QVector3D endPos, int time)
+{
+    Q_UNUSED(endPos)
+    Q_UNUSED(time)
+
+    // TODO Racket::runAnimation2
+}
+
+
+
+
+
+
+
+
+
+
+

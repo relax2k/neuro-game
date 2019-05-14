@@ -19,6 +19,8 @@ public:
     QVector3D pos() const;
 
     // TODO animation
+    void runAnimation1(QVector3D endPos, int time);
+    void runAnimation2(QVector3D endPos, int time);
 
 private:
     Qt3DCore::QEntity * entity_;
