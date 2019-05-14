@@ -1,8 +1,8 @@
 #pragma once
 
 #include "stdafx.hpp"
-#include "defs.hpp"
 #include "scene.hpp"
+#include "time.hpp"
 
 
 class Ball final
@@ -12,7 +12,7 @@ class Ball final
 public:
     using Interval = std::pair<std::optional<qreal>, std::optional<qreal>>;
 
-    explicit Ball(Qt3DCore::QEntity * parent, int dt = UPDATE_INTERVAL);
+    explicit Ball(Qt3DCore::QEntity * parent);
     /**
       * @warning Ball should not be deleted after parent.
       */
@@ -22,22 +22,24 @@ public:
     QVector3D v() const;
     void setGravity(bool b);
     bool gravity() const;
-    int dt() const;
     void setPos(QVector3D pos);
     QVector3D pos() const;
     float radius() const;
+    Time dt() const;
 
     void reflect(QVector3D n);
 
     void outOfXIntervalNotifier(Interval l);
 
 private:
-    void timerEvent(QTimerEvent * event) override;
     void applyGravity();
     void move();
     bool isInInterval() const;
 
-    float toSec(int t) const;
+    float toSec(Time t) const;
+
+private slots:
+    void update(Time dt);
 
 signals:
     void outOfXInterval(qreal x);
@@ -50,7 +52,7 @@ private:
 
     QVector3D v_{};
     bool gravity_ = false;
-    int dt_;
     float radius_ = 20 * Scene::SCALE;
+    Time dt_ = Clock::dt60;
     Interval xint_ = { std::nullopt, std::nullopt };
 };

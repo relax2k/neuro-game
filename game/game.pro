@@ -27,7 +27,6 @@ HEADERS += \
     ball.hpp \
     camflyingaround.hpp \
     collisions.hpp \
-    defs.hpp \
     racket.hpp \
     stdafx.hpp \
     scene.hpp \

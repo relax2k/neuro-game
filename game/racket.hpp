@@ -1,7 +1,6 @@
 #pragma once
 
 #include "stdafx.hpp"
-#include "defs.hpp"
 
 
 class Racket final
@@ -25,6 +24,5 @@ public:
 private:
     Qt3DCore::QEntity * entity_;
     Qt3DCore::QTransform * transform_;
-    int dt_ = UPDATE_INTERVAL;
 };
 

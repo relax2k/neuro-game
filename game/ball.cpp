@@ -3,13 +3,11 @@
 #include "scene.hpp"
 
 
-Ball::Ball(Qt3DCore::QEntity * parent, int dt)
+Ball::Ball(Qt3DCore::QEntity * parent)
     : entity_   (new Qt3DCore::QEntity(parent))
     , transform_(new Qt3DCore::QTransform)
-    , dt_(dt)
 {
     assert(parent);
-    assert(dt > 0);
 
     auto mesh = new Qt3DRender::QMesh;
     mesh->setSource({ASSETS "ball.obj"});
@@ -31,7 +29,8 @@ Ball::Ball(Qt3DCore::QEntity * parent, int dt)
     entity_->addComponent(textures);
     entity_->addComponent(transform_);
 
-    startTimer(dt);
+    connect(Clock::instance(), &Clock::fps60dt, this, &Ball::update);
+    assert(dt_ == Clock::dt60);
 }
 
 
@@ -65,12 +64,6 @@ bool Ball::gravity() const
 }
 
 
-int Ball::dt() const
-{
-    return dt_;
-}
-
-
 void Ball::setPos(QVector3D pos)
 {
     assert(transform_);
@@ -90,6 +83,12 @@ float Ball::radius() const
 }
 
 
+Time Ball::dt() const
+{
+    return dt_;
+}
+
+
 void Ball::reflect(QVector3D n)
 {
     assert(!n.isNull());
@@ -105,20 +104,6 @@ void Ball::outOfXIntervalNotifier(Interval l)
         }
     }
     xint_ = l;
-}
-
-
-void Ball::timerEvent(QTimerEvent * event)
-{
-    Q_UNUSED(event)
-
-    if (gravity_) {
-        applyGravity();
-    }
-    move();
-    if (!isInInterval()) {
-        emit outOfXInterval(qreal(pos().x()));
-    }
 }
 
 
@@ -152,10 +137,31 @@ bool Ball::isInInterval() const
 }
 
 
-float Ball::toSec(int t) const
+float Ball::toSec(Time t) const
 {
     return t / 1000.0f;
 }
+
+
+void Ball::update(Time dt)
+{
+    assert(dt == dt_);
+
+    if (gravity_) {
+        applyGravity();
+    }
+    move();
+    if (!isInInterval()) {
+        emit outOfXInterval(qreal(pos().x()));
+    }
+}
+
+
+
+
+
+
+
 
 
 

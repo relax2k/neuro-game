@@ -10,17 +10,20 @@ class Clock final
     Q_OBJECT
 
 public:
-    void init();
-    Clock & instance();
+    static void init();
+    static Clock * instance();
 
     Time time() const;
 
+    using Timer = void (Clock::*) (Time);
+    Timer getTimerSignalDt(Time dt);
+
 public:
     // Number is fps
-    static const Time dt120_ = 8;
-    static const Time dt60_  = 16;
-    static const Time dt30_  = 32;
-    static const Time dt_ = dt120_;
+    static const Time dt120 = 8;
+    static const Time dt60  = 16;
+    static const Time dt30  = 32;
+    static const Time dt = dt120;
 
 signals:
     void fps120dt  (Time dt);

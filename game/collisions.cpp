@@ -6,10 +6,9 @@ Collisions::Collisions(Ball * ball, Scene * scene)
     , scene_(scene)
 {
     assert(ball);
-
-    startTimer(2 * ball->dt()); // To prevent twice collision processing
-
     connect(ball_, &Ball::destroyed, this, &Collisions::deleteLater);
+    connect(Clock::instance(), Clock::instance()->getTimerSignalDt(ball->dt()),
+            this, &Collisions::update);
 }
 
 
@@ -19,9 +18,9 @@ Collisions::~Collisions()
 }
 
 
-void Collisions::timerEvent(QTimerEvent * event)
+void Collisions::update(Time dt)
 {
-    Q_UNUSED(event)
+    Q_UNUSED(dt)
     assert(ball_);
     assert(scene_);
 

@@ -12,8 +12,8 @@ public:
     Collisions(Ball * ball, Scene * scene);
     ~Collisions() override;
 
-private:
-    void timerEvent(QTimerEvent * event) override;
+private slots:
+    void update(Time dt);
 
 private:
     Ball  * ball_;
