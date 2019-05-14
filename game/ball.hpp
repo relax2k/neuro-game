@@ -10,7 +10,7 @@ class Ball final
     Q_OBJECT
 
 public:
-    using Interval = std::pair<std::optional<qreal>, std::optional<qreal>>;
+    using Interval = std::optional<std::pair<qreal, qreal>>;
 
     explicit Ball(Qt3DCore::QEntity * parent);
     /**
@@ -27,9 +27,13 @@ public:
     float radius() const;
     Time dt() const;
 
+    /**
+     * @brief Chages ball's speed as if it reflected.
+     * @param n Normal of surface ball collided with.
+     */
     void reflect(QVector3D n);
 
-    void outOfXIntervalNotifier(Interval l);
+    void setBorderCrossNotifier(Interval l);
 
 private:
     void applyGravity();
@@ -42,7 +46,7 @@ private slots:
     void update(Time dt);
 
 signals:
-    void outOfXInterval(qreal x);
+    void borderCrossed(bool crossedInto);
 
 private:
     const QVector3D g_ = QVector3D{ 0, -980, 0 } * Scene::SCALE;
@@ -52,7 +56,8 @@ private:
 
     QVector3D v_{};
     bool gravity_ = false;
+    Interval xint_;
+    bool inInterval_{};
     float radius_ = 20 * Scene::SCALE;
     Time dt_ = Clock::dt60;
-    Interval xint_ = { std::nullopt, std::nullopt };
 };

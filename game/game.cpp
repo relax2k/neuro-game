@@ -54,6 +54,7 @@ void Game::singlePlayer()
     ball_->setPos({9.0, 5.0, -1.0});
     ball_->setV({-5.1f, 0, 0});
     ball_->setGravity(true);
+    ball_->setBorderCrossNotifier({{-1.5, 1.5}});
     new Collisions(ball_, scene_.get());
 }
 

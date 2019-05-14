@@ -6,6 +6,7 @@
 Ball::Ball(Qt3DCore::QEntity * parent)
     : entity_   (new Qt3DCore::QEntity(parent))
     , transform_(new Qt3DCore::QTransform)
+    , xint_(std::nullopt)
 {
     assert(parent);
 
@@ -31,6 +32,8 @@ Ball::Ball(Qt3DCore::QEntity * parent)
 
     connect(Clock::instance(), &Clock::fps60dt, this, &Ball::update);
     assert(dt_ == Clock::dt60);
+
+    inInterval_ = isInInterval();
 }
 
 
@@ -96,11 +99,11 @@ void Ball::reflect(QVector3D n)
 }
 
 
-void Ball::outOfXIntervalNotifier(Interval l)
+void Ball::setBorderCrossNotifier(Interval l)
 {
-    if (l.first && l.second) {
-        if (l.first > l.second) {
-            std::swap(l.first, l.second);
+    if (l) {
+        if (l->first > l->second) {
+            std::swap(l->first, l->second);
         }
     }
     xint_ = l;
@@ -110,7 +113,7 @@ void Ball::outOfXIntervalNotifier(Interval l)
 void Ball::applyGravity()
 {
     assert(gravity_);
-    v_ += g_ * toSec(dt_); // To seconds
+    v_ += g_ * toSec(dt_);
 }
 
 
@@ -123,14 +126,17 @@ void Ball::move()
 bool Ball::isInInterval() const
 {
     assert([this] {
-        if (xint_.first && xint_.second) {
-            return xint_.first <= xint_.second;
+        if (xint_) {
+            return xint_->first <= xint_->second;
         }
         return true;
     } ());
 
-    if ((xint_.first && pos().x() < xint_.first) ||
-            (xint_.second && xint_.second < pos().x())) {
+    if (!xint_) {
+        return false;
+    }
+
+    if (qreal(pos().x()) < xint_->first || xint_->second < qreal(pos().x())) {
         return false;
     }
     return true;
@@ -150,9 +156,18 @@ void Ball::update(Time dt)
     if (gravity_) {
         applyGravity();
     }
+
     move();
-    if (!isInInterval()) {
-        emit outOfXInterval(qreal(pos().x()));
+
+    const bool wasInInterval = inInterval_;
+    inInterval_ = isInInterval();
+    if (wasInInterval && !inInterval_) {
+        emit borderCrossed(false);
+        qDebug() << "Crossed out";
+    }
+    if (!wasInInterval && inInterval_) {
+        emit borderCrossed(true);
+        qDebug() << "Crossed into";
     }
 }
 
