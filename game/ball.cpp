@@ -97,6 +97,17 @@ void Ball::reflect(QVector3D n)
 }
 
 
+void Ball::outOfXIntervalNotifier(Interval l)
+{
+    if (l.first && l.second) {
+        if (l.first > l.second) {
+            std::swap(l.first, l.second);
+        }
+    }
+    xint_ = l;
+}
+
+
 void Ball::timerEvent(QTimerEvent * event)
 {
     Q_UNUSED(event)
@@ -105,6 +116,9 @@ void Ball::timerEvent(QTimerEvent * event)
         applyGravity();
     }
     move();
+    if (!isInInterval()) {
+        emit outOfXInterval(qreal(pos().x()));
+    }
 }
 
 
@@ -118,6 +132,23 @@ void Ball::applyGravity()
 void Ball::move()
 {
     transform_->setTranslation(pos() + toSec(dt_) * v_);
+}
+
+
+bool Ball::isInInterval() const
+{
+    assert([this] {
+        if (xint_.first && xint_.second) {
+            return xint_.first <= xint_.second;
+        }
+        return true;
+    } ());
+
+    if ((xint_.first && pos().x() < xint_.first) ||
+            (xint_.second && xint_.second < pos().x())) {
+        return false;
+    }
+    return true;
 }
 
 

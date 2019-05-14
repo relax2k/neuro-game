@@ -10,6 +10,8 @@ class Ball final
     Q_OBJECT
 
 public:
+    using Interval = std::pair<std::optional<qreal>, std::optional<qreal>>;
+
     explicit Ball(Qt3DCore::QEntity * parent, int dt = UPDATE_INTERVAL);
     /**
       * @warning Ball should not be deleted after parent.
@@ -27,12 +29,18 @@ public:
 
     void reflect(QVector3D n);
 
+    void outOfXIntervalNotifier(Interval l);
+
 private:
     void timerEvent(QTimerEvent * event) override;
     void applyGravity();
     void move();
+    bool isInInterval() const;
 
     float toSec(int t) const;
+
+signals:
+    void outOfXInterval(qreal x);
 
 private:
     const QVector3D g_ = QVector3D{ 0, -980, 0 } * Scene::SCALE;
@@ -44,4 +52,5 @@ private:
     bool gravity_ = false;
     int dt_;
     float radius_ = 20 * Scene::SCALE;
+    Interval xint_ = { std::nullopt, std::nullopt };
 };
