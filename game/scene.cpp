@@ -31,7 +31,7 @@ std::optional<QVector3D> Scene::intersectsWithTable(Ball const * ball) const
 
 std::optional<QVector3D> Scene::intersectsWithGrid(Ball const * ball) const
 {
-    const float y1 = 3.96f;
+    const float y1 = 1.0f;
     const float y2 = 4.72f;
     const float z1 = 4.5f;
     const float z2 = -z1;
