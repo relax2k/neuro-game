@@ -14,6 +14,7 @@ public:
 
 private slots:
     void update(Time dt);
+    void harakiri();
 
 private:
     Ball  * ball_;

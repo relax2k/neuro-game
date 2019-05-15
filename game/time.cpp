@@ -15,6 +15,20 @@ Clock * Clock::instance()
 }
 
 
+void Clock::setDeceleration(int percent)
+{
+    assert(0 <= percent && percent <= 100);
+    signalsInHundredTicks_ = percent;
+}
+
+
+int Clock::deceleration() const
+{
+    assert(0 <= signalsInHundredTicks_ && signalsInHundredTicks_ <= 100);
+    return signalsInHundredTicks_;
+}
+
+
 Time Clock::time() const
 {
     return time_;
@@ -43,9 +57,24 @@ Clock::Clock()
 }
 
 
+bool Clock::skipTimerEvent() const
+{
+    if (absoluteTime_ % 10 < signalsInHundredTicks_ / 10) {
+        return false;
+    }
+    return true;
+}
+
+
 void Clock::timerEvent(QTimerEvent * event)
 {
     Q_UNUSED(event)
+
+    absoluteTime_ += dt;
+
+    if (skipTimerEvent()) {
+        return;
+    }
 
     time_ += dt;
 

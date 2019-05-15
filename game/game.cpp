@@ -54,7 +54,19 @@ void Game::singlePlayer()
     ball_->setPos({9.0, 5.0, -1.0});
     ball_->setV({-5.1f, 0, 0});
     ball_->setGravity(true);
-    ball_->setBorderCrossNotifier({{-1.5, 1.5}});
+    ball_->setBorderCrossNotifier({{-3, 3}});
+
+    connect(ball_, &Ball::borderCrossed, [](bool crossedInto) {
+        if (crossedInto) {
+            Clock::instance()->setDeceleration(100);
+        } else {
+            Clock::instance()->setDeceleration(30);
+        }
+    });
+    connect(ball_, &Ball::destroyed, [] {
+        Clock::instance()->setDeceleration(100);
+    });
+
     new Collisions(ball_, scene_.get());
 }
 

@@ -13,6 +13,13 @@ public:
     static void init();
     static Clock * instance();
 
+    /**
+     * @brief Slows down timer.
+     * @param percent of default frequency.
+     */
+    void setDeceleration(int percent);
+    int deceleration() const;
+
     Time time() const;
 
     using Timer = void (Clock::*) (Time);
@@ -37,9 +44,12 @@ signals:
 
 private:
     Clock();
+    bool skipTimerEvent() const;
     void timerEvent(QTimerEvent * event) override;
 
 private:
+    Time absoluteTime_ = 0;
     Time time_ = 0;
+    int signalsInHundredTicks_ = 100;
 };
 
