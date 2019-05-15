@@ -1,5 +1,7 @@
 #include "scene.hpp"
 
+#include "ball.hpp"
+
 
 Scene::Scene(Qt3DCore::QEntity * root)
     : rootEntity_(root)
@@ -11,6 +13,53 @@ Scene::Scene(Qt3DCore::QEntity * root)
     , light_     (createLights())
 {
     assert(rootEntity_);
+}
+
+
+std::optional<QVector3D> Scene::intersectsWithTable(Ball const * ball) const
+{
+    const float tableHeight = 3.86f;
+
+    if (ball->pos().y() - ball->radius() <= tableHeight &&
+            inTable(ball->pos())) {
+        return { QVector3D(0, 1, 0) };
+    } else {
+        return std::nullopt;
+    }
+}
+
+
+std::optional<QVector3D> Scene::intersectsWithGrid(Ball const * ball) const
+{
+    const float y1 = 3.96f;
+    const float y2 = 4.72f;
+    const float z1 = 4.5f;
+    const float z2 = -z1;
+
+    const auto pos = ball->pos();
+
+    if (pos.z() <= z1 && pos.z() >= z2 &&
+            pos.y() >= y1 && pos.y() <= y2 &&
+            std::abs(pos.x()) <= ball->radius()) {
+        if (pos.x() < 0) {
+            return { QVector3D(-1, 0, 0) };
+        } else {
+            return { QVector3D(1, 0, 0) };
+        }
+    }
+
+    return std::nullopt;
+}
+
+
+bool Scene::inTable(QVector3D pos) const
+{
+    const float z1 = 3.81f;
+    const float z2 = -z1;
+    const float x1 = 6.86f;
+    const float x2 = -x1;
+
+    return pos.x() >= x2 && pos.x() <= x1 && pos.z() >= z2 && pos.z() <= z1;
 }
 
 

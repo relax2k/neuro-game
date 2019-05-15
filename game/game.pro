@@ -17,18 +17,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp \
     ball.cpp \
     camflyingaround.cpp \
+    collisions.cpp \
     racket.cpp \
     scene.cpp \
     game.cpp \
+    time.cpp
 
 HEADERS += \
     ball.hpp \
     camflyingaround.hpp \
-    defs.hpp \
+    collisions.hpp \
     racket.hpp \
     stdafx.hpp \
     scene.hpp \
-    game.hpp \
+    game.hpp \ \
+    time.hpp
 
 PRECOMPILED_HEADER = stdafx.hpp
 

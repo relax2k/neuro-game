@@ -2,6 +2,7 @@
 
 #include "ball.hpp"
 #include "racket.hpp"
+#include "collisions.hpp"
 
 
 Game::Game(Qt3DCore::QEntity * root,
@@ -50,6 +51,23 @@ void Game::singlePlayer()
     racket2_->setPos({-5.0, 5.0, 0.0});
 
     ball_ = new Ball(rootEntity_);
+    ball_->setPos({9.0, 5.0, -1.0});
+    ball_->setV({-5.1f, 0, 0});
+    ball_->setGravity(true);
+    ball_->setBorderCrossNotifier({{-3, 3}});
+
+    connect(ball_, &Ball::borderCrossed, [](bool crossedInto) {
+        if (crossedInto) {
+            Clock::instance()->setDeceleration(100);
+        } else {
+            Clock::instance()->setDeceleration(30);
+        }
+    });
+    connect(ball_, &Ball::destroyed, [] {
+        Clock::instance()->setDeceleration(100);
+    });
+
+    new Collisions(ball_, scene_.get());
 }
 
 

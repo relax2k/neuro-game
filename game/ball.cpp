@@ -3,13 +3,12 @@
 #include "scene.hpp"
 
 
-Ball::Ball(Qt3DCore::QEntity * parent, int dt)
+Ball::Ball(Qt3DCore::QEntity * parent)
     : entity_   (new Qt3DCore::QEntity(parent))
     , transform_(new Qt3DCore::QTransform)
-    , dt_(dt)
+    , xint_(std::nullopt)
 {
     assert(parent);
-    assert(dt > 0);
 
     auto mesh = new Qt3DRender::QMesh;
     mesh->setSource({ASSETS "ball.obj"});
@@ -31,7 +30,10 @@ Ball::Ball(Qt3DCore::QEntity * parent, int dt)
     entity_->addComponent(textures);
     entity_->addComponent(transform_);
 
-    startTimer(dt);
+    connect(Clock::instance(), &Clock::fps60dt, this, &Ball::update);
+    assert(dt_ == Clock::dt60);
+
+    inInterval_ = isInInterval();
 }
 
 
@@ -78,28 +80,101 @@ QVector3D Ball::pos() const
 }
 
 
-void Ball::timerEvent(QTimerEvent * event)
+float Ball::radius() const
 {
-    Q_UNUSED(event)
+    return radius_;
+}
 
-    if (gravity_) {
-        applyGravity();
+
+Time Ball::dt() const
+{
+    return dt_;
+}
+
+
+void Ball::reflect(QVector3D n)
+{
+    assert(!n.isNull());
+    v_ = v_ - 2 * (v_ * n) * n;
+}
+
+
+void Ball::setBorderCrossNotifier(Interval l)
+{
+    if (l) {
+        if (l->first > l->second) {
+            std::swap(l->first, l->second);
+        }
     }
-    move();
+    xint_ = l;
 }
 
 
 void Ball::applyGravity()
 {
     assert(gravity_);
-    // TODO
+    v_ += g_ * toSec(dt_);
 }
 
 
 void Ball::move()
 {
-    // TODO
+    transform_->setTranslation(pos() + toSec(dt_) * v_);
 }
+
+
+bool Ball::isInInterval() const
+{
+    assert([this] {
+        if (xint_) {
+            return xint_->first <= xint_->second;
+        }
+        return true;
+    } ());
+
+    if (!xint_) {
+        return false;
+    }
+
+    if (qreal(pos().x()) < xint_->first || xint_->second < qreal(pos().x())) {
+        return false;
+    }
+    return true;
+}
+
+
+float Ball::toSec(Time t) const
+{
+    return t / 1000.0f;
+}
+
+
+void Ball::update(Time dt)
+{
+    assert(dt == dt_);
+
+    if (gravity_) {
+        applyGravity();
+    }
+
+    move();
+
+    const bool wasInInterval = inInterval_;
+    inInterval_ = isInInterval();
+    if (wasInInterval && !inInterval_) {
+        emit borderCrossed(false);
+        qDebug() << "Crossed out";
+    }
+    if (!wasInInterval && inInterval_) {
+        emit borderCrossed(true);
+        qDebug() << "Crossed into";
+    }
+}
+
+
+
+
+
 
 
 
