@@ -3,11 +3,11 @@
 #include "ball.hpp"
 #include "racket.hpp"
 #include "collisions.hpp"
+#include "inputhandler.hpp"
 
 
-Game::Game(Qt3DCore::QEntity * root,
-           Qt3DRender::QCamera * camera, QObject * parent)
-    : QObject    (parent)
+Game::Game(Qt3DCore::QEntity * root, Qt3DRender::QCamera * camera)
+    : Qt3DCore::QEntity(root)
     , rootEntity_(root)
     , camera_    (camera)
     , scene_     (std::make_unique<Scene>(root))
@@ -16,6 +16,11 @@ Game::Game(Qt3DCore::QEntity * root,
     assert(camera);
 
     gotoMainMenu();
+
+    auto keyboard = new InputHandler(this);
+    connect(keyboard, &InputHandler::spacePressed, [] {
+        qDebug() << "Space pressed!";
+    });
 
     // auto * camController = new Qt3DExtras::QFirstPersonCameraController(root);
     // camController->setCamera(camera_);

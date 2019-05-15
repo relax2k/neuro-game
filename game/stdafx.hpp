@@ -13,6 +13,10 @@
 #include <QHash>
 #include <QSharedPointer>
 
+#include <QKeyboardHandler>
+#include <QKeyboardDevice>
+#include <QInputSettings>
+
 #include <QTextureMaterial>
 #include <QNormalDiffuseSpecularMapMaterial>
 #include <QDiffuseMapMaterial>
