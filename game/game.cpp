@@ -3,9 +3,6 @@
 #include "ball.hpp"
 #include "racket.hpp"
 #include "collisions.hpp"
-#include "inputhandler.hpp"
-#include "stdafx.hpp"
-#include "scene.hpp"
 
 
 Game::Game(Qt3DCore::QEntity * root, Qt3DRender::QCamera * camera)
@@ -18,22 +15,16 @@ Game::Game(Qt3DCore::QEntity * root, Qt3DRender::QCamera * camera)
     assert(camera);
 
     gotoMainMenu();
-
-    auto keyboard = new InputHandler(this);
-    connect(keyboard, &InputHandler::spacePressed, [] {
-        qDebug() << "Space pressed!";
-    });
-
-    // auto * camController = new Qt3DExtras::QFirstPersonCameraController(root);
-    // camController->setCamera(camera_);
 }
 
 
 void Game::gotoMainMenu()
 {
+    assert(camera_);
     camera_->setPosition({20, 9, 0});
     camera_->setViewCenter({0, 4, 0});
     camera_->setUpVector({0, 1, 0});
+
     assert(!camFly_);
     camFly_ = std::make_unique<CamFlyingAround>(camera_, 20);
 
@@ -62,7 +53,7 @@ void Game::singlePlayer()
     ball_->setPos({9.0, 5.0, -1.0});
     ball_->setV({-5.1f, 0, 0});
     ball_->setGravity(true);
-    ball_->setBorderCrossNotifier({-3, 3});
+    ball_->setBorderCrossNotifier({{-3, 3}});
 
     connect(ball_, &Ball::borderCrossed, [](bool crossedInto) {
         if (crossedInto) {
@@ -79,9 +70,10 @@ void Game::singlePlayer()
 }
 
 
-void Game::multiplayer()
+void Game::keyEvent(int key)
 {
-    qDebug() << "Multiplayer";
+    Q_UNUSED(key)
+    qDebug() << "Key handled in C++!";
 }
 
 

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "stdafx.hpp"
-#include "camflyingaround.hpp"
 #include "scene.hpp"
+#include "camflyingaround.hpp"
 
 
 class Ball;
@@ -25,7 +25,8 @@ public:
 public slots:
     Q_INVOKABLE void gotoMainMenu();
     Q_INVOKABLE void singlePlayer();
-    Q_INVOKABLE void multiplayer();
+
+    Q_INVOKABLE void keyEvent(int key);
 
     // Attempts to access cpp struct from qml failed
     Q_INVOKABLE int score1() const;

@@ -11,8 +11,8 @@ class Scene final {
 public:
     explicit Scene(Qt3DCore::QEntity * root);
 
-    std::pair<QVector3D, bool> intersectsWithTable(Ball const * ball) const;
-    std::pair<QVector3D, bool> intersectsWithGrid (Ball const * ball) const;
+    std::optional<QVector3D> intersectsWithTable(Ball const * ball) const;
+    std::optional<QVector3D> intersectsWithGrid (Ball const * ball) const;
 
 public:
     constexpr static const float SCALE = 0.005f;

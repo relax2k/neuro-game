@@ -36,25 +36,10 @@ Item {
                 singleplayerMenu.visible = true
                 mainMenu.visible = false
             }
-        }
 
-        Button {
-            id: multiplayerButton
-            Layout.alignment: Qt.AlignCenter
-            text: "Multiplayer"
-            font.pointSize: root.width / 15
-            width: parent.width
-            onClicked: { Game.multiplayer() }
-        }
-
-        Button {
-            id: settingsButton
-            Layout.alignment: Qt.AlignCenter
-            text: "Settings"
-            font.pointSize: root.width / 15
-            width: parent.width
-
-            // onClicked: { cppController.settngsButtClickd() }
+            Keys.onPressed: {
+                Game.keyEvent(event.key)
+            }
         }
 
         Button {
