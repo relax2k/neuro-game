@@ -21,17 +21,17 @@ Game::Game(Qt3DCore::QEntity * root, Qt3DRender::QCamera * camera)
     connect(keyboard, &InputHandler::spacePressed, [] {
         qDebug() << "Space pressed!";
     });
-
-    // auto * camController = new Qt3DExtras::QFirstPersonCameraController(root);
-    // camController->setCamera(camera_);
 }
 
 
 void Game::gotoMainMenu()
 {
+    assert(camera_);
     camera_->setPosition({20, 9, 0});
     camera_->setViewCenter({0, 4, 0});
     camera_->setUpVector({0, 1, 0});
+
+    assert(!camFly_);
     camFly_ = std::make_unique<CamFlyingAround>(camera_, 20);
 
     delRackets();
