@@ -17,5 +17,6 @@
         <file>assets/table.obj</file>
         <file>assets/ball.obj</file>
         <file>assets/ball.png</file>
+        <file>InputHandler.qml</file>
     </qresource>
 </RCC>
