@@ -10,7 +10,7 @@ class Ball final
     Q_OBJECT
 
 public:
-    using Interval = std::pair<qreal, qreal>;
+    using Interval = std::optional<std::pair<qreal, qreal>>;
 
     explicit Ball(Qt3DCore::QEntity * parent);
     /**
@@ -58,7 +58,7 @@ private:
     QVector3D v_{};
     bool gravity_ = false;
     Interval xint_;
-    bool inInterval_;
+    bool inInterval_{};
     float radius_ = 20 * Scene::SCALE;
     Time dt_ = Clock::dt60;
 };

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "stdafx.hpp"
-#include "camflyingaround.hpp"
 #include "scene.hpp"
+#include "camflyingaround.hpp"
 
 
 class Ball;
