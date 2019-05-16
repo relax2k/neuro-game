@@ -16,20 +16,20 @@ Scene::Scene(Qt3DCore::QEntity * root)
 }
 
 
-std::optional<QVector3D> Scene::intersectsWithTable(Ball const * ball) const
+std::pair<QVector3D, bool> Scene::intersectsWithTable(Ball const * ball) const
 {
     const float tableHeight = 3.86f;
 
     if (ball->pos().y() - ball->radius() <= tableHeight &&
             inTable(ball->pos())) {
-        return { QVector3D(0, 1, 0) };
+        return { QVector3D(0, 1, 0), true };
     } else {
-        return std::nullopt;
+        return { QVector3D(), false };
     }
 }
 
 
-std::optional<QVector3D> Scene::intersectsWithGrid(Ball const * ball) const
+std::pair<QVector3D, bool> Scene::intersectsWithGrid(Ball const * ball) const
 {
     const float y1 = 1.0f;
     const float y2 = 4.72f;
@@ -42,13 +42,13 @@ std::optional<QVector3D> Scene::intersectsWithGrid(Ball const * ball) const
             pos.y() >= y1 && pos.y() <= y2 &&
             std::abs(pos.x()) <= ball->radius()) {
         if (pos.x() < 0) {
-            return { QVector3D(-1, 0, 0) };
+            return { QVector3D(-1, 0, 0), true };
         } else {
-            return { QVector3D(1, 0, 0) };
+            return { QVector3D(1, 0, 0), true };
         }
     }
 
-    return std::nullopt;
+    return { QVector3D(), false };
 }
 
 

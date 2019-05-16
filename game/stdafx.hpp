@@ -5,7 +5,7 @@
 #include <cmath>
 #include <memory>
 #include <vector>
-#include <optional>
+#include <limits>
 
 #include <QGuiApplication>
 

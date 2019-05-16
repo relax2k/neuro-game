@@ -1,8 +1,9 @@
 #pragma once
 
-#include "scene.hpp"
 #include "ball.hpp"
 
+
+class Scene;
 
 class Collisions final
         : public QObject {

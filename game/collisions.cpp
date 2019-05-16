@@ -26,10 +26,14 @@ void Collisions::update(Time dt)
     assert(ball_);
     assert(scene_);
 
-    if (auto n = scene_->intersectsWithTable(ball_)) {
-        ball_->reflect(n.value());
-    } else if (auto n = scene_->intersectsWithGrid(ball_)) {
-        ball_->reflect(n.value());
+    auto n1 = scene_->intersectsWithTable(ball_);
+    if (n1.second) {
+        ball_->reflect(n1.first);
+    }
+
+    auto n2 = scene_->intersectsWithGrid(ball_);
+    if (n2.second) {
+        ball_->reflect(n2.first);
     }
 }
 
