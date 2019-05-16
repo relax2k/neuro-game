@@ -1,7 +1,7 @@
 QT += gui qml quick 3dcore 3drender 3dquick 3dinput 3dextras
 QT += widgets quick quickwidgets
 
-CONFIG += c++17
+CONFIG += c++14
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -18,6 +18,7 @@ SOURCES += main.cpp \
     ball.cpp \
     camflyingaround.cpp \
     collisions.cpp \
+    inputhandler.cpp \
     racket.cpp \
     scene.cpp \
     game.cpp \
@@ -27,6 +28,7 @@ HEADERS += \
     ball.hpp \
     camflyingaround.hpp \
     collisions.hpp \
+    inputhandler.hpp \
     racket.hpp \
     stdafx.hpp \
     scene.hpp \

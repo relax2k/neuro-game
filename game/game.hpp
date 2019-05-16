@@ -1,8 +1,8 @@
 #pragma once
 
 #include "stdafx.hpp"
-#include "scene.hpp"
 #include "camflyingaround.hpp"
+#include "scene.hpp"
 
 
 class Ball;
@@ -10,14 +10,13 @@ class Racket;
 
 
 class Game
-        : public QObject {
+        : public Qt3DCore::QEntity {
     Q_OBJECT
 
 public:
     using Score = std::pair<int, int>;
 
-    explicit Game(Qt3DCore::QEntity * root,
-                  Qt3DRender::QCamera * camera, QObject * parent = nullptr);
+    explicit Game(Qt3DCore::QEntity * root, Qt3DRender::QCamera * camera);
 
     void addScore(Score delta);
     void setScore(Score val);

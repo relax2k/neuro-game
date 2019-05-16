@@ -6,7 +6,11 @@
 Ball::Ball(Qt3DCore::QEntity * parent)
     : entity_   (new Qt3DCore::QEntity(parent))
     , transform_(new Qt3DCore::QTransform)
-    , xint_(std::nullopt)
+    , xint_([] {
+    auto max = std::numeric_limits<qreal>::max();
+    auto min = std::numeric_limits<qreal>::min();
+    return std::make_pair(min, max); } ())
+    , inInterval_(isInInterval())
 {
     assert(parent);
 
@@ -101,10 +105,8 @@ void Ball::reflect(QVector3D n)
 
 void Ball::setBorderCrossNotifier(Interval l)
 {
-    if (l) {
-        if (l->first > l->second) {
-            std::swap(l->first, l->second);
-        }
+    if (l.first > l.second) {
+        std::swap(l.first, l.second);
     }
     xint_ = l;
 }
@@ -125,18 +127,9 @@ void Ball::move()
 
 bool Ball::isInInterval() const
 {
-    assert([this] {
-        if (xint_) {
-            return xint_->first <= xint_->second;
-        }
-        return true;
-    } ());
+    assert(xint_.first <= xint_.second);
 
-    if (!xint_) {
-        return false;
-    }
-
-    if (qreal(pos().x()) < xint_->first || xint_->second < qreal(pos().x())) {
+    if (qreal(pos().x()) < xint_.first || xint_.second < qreal(pos().x())) {
         return false;
     }
     return true;

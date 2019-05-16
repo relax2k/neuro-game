@@ -5,13 +5,17 @@
 #include <cmath>
 #include <memory>
 #include <vector>
-#include <optional>
+#include <limits>
 
 #include <QGuiApplication>
 
 #include <QVector3D>
 #include <QHash>
 #include <QSharedPointer>
+
+#include <QKeyboardHandler>
+#include <QKeyboardDevice>
+#include <QInputSettings>
 
 #include <QTextureMaterial>
 #include <QNormalDiffuseSpecularMapMaterial>
