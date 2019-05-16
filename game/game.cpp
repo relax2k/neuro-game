@@ -3,7 +3,6 @@
 #include "ball.hpp"
 #include "racket.hpp"
 #include "collisions.hpp"
-#include "inputhandler.hpp"
 
 
 Game::Game(Qt3DCore::QEntity * root, Qt3DRender::QCamera * camera)
@@ -16,11 +15,6 @@ Game::Game(Qt3DCore::QEntity * root, Qt3DRender::QCamera * camera)
     assert(camera);
 
     gotoMainMenu();
-
-    auto keyboard = new InputHandler(this);
-    connect(keyboard, &InputHandler::spacePressed, [] {
-        qDebug() << "Space pressed!";
-    });
 }
 
 
@@ -76,9 +70,10 @@ void Game::singlePlayer()
 }
 
 
-void Game::multiplayer()
+void Game::keyEvent(int key)
 {
-    qDebug() << "Multiplayer";
+    Q_UNUSED(key)
+    qDebug() << "Key handled in C++!";
 }
 
 
