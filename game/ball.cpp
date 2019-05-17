@@ -49,6 +49,11 @@ void Ball::setV(QVector3D v)
 }
 
 
+bool Ball::setV(QVector3D newPos, Time t) {
+    return true;
+}
+
+
 QVector3D Ball::v() const
 {
     return v_;
