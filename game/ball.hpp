@@ -21,10 +21,14 @@ public:
     void setV(QVector3D v);
     bool setV(QVector3D newPos, Time t); // TODO
     QVector3D v() const;
+
     void setGravity(bool b);
     bool gravity() const;
+
     void setPos(QVector3D pos);
     QVector3D pos() const;
+    QVector3D predictPos(Time dt); // TODO
+
     float radius() const;
     Time dt() const;
 
