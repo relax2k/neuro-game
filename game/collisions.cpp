@@ -1,5 +1,7 @@
 #include "collisions.hpp"
 
+#include "table.hpp"
+
 
 Collisions::Collisions(Ball * ball, Scene * scene)
     : ball_ (ball)
@@ -26,9 +28,7 @@ void Collisions::update(Time dt)
     assert(ball_);
     assert(scene_);
 
-    if (auto n = scene_->intersectsWithTable(ball_)) {
-        ball_->reflect(n.value());
-    } else if (auto n = scene_->intersectsWithGrid(ball_)) {
+    if (auto n = scene_->table()->intersects(ball_)) {
         ball_->reflect(n.value());
     }
 }

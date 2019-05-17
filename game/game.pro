@@ -21,6 +21,7 @@ SOURCES += main.cpp \
     racket.cpp \
     scene.cpp \
     game.cpp \
+    table.cpp \
     time.cpp
 
 HEADERS += \
@@ -31,6 +32,7 @@ HEADERS += \
     stdafx.hpp \
     scene.hpp \
     game.hpp \ \
+    table.hpp \
     time.hpp
 
 PRECOMPILED_HEADER = stdafx.hpp
