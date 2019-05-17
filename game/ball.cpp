@@ -49,6 +49,13 @@ void Ball::setV(QVector3D v)
 }
 
 
+void Ball::setV(QVector3D newPos, Time t) {
+    QVector3D pos = this->pos();
+    QVector3D velocity = (newPos - pos) / t - g_ * t / 2;
+    v_ = velocity;
+}
+
+
 QVector3D Ball::v() const
 {
     return v_;
