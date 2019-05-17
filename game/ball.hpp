@@ -27,6 +27,11 @@ public:
 
     void setPos(QVector3D pos);
     QVector3D pos() const;
+    /**
+     * @brief Preicts ball's position.
+     * @param dt Time interval in ms.
+     * @return Ball's position in dt seconds.
+     */
     QVector3D predictPos(Time dt);
 
     float radius() const;
