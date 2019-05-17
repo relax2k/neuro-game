@@ -49,10 +49,14 @@ void Ball::setV(QVector3D v)
 }
 
 
-void Ball::setV(QVector3D newPos, Time t) {
-    QVector3D pos = this->pos();
-    QVector3D velocity = (newPos - pos) / t - g_ * t / 2;
-    v_ = velocity;
+void Ball::setV(QVector3D newPos, Time t)
+{
+    t /= 1000; // To secons
+    if (gravity_) {
+        v_ = (newPos - pos()) / t - g_ * t / 2;
+    } else {
+        v_ = (newPos - pos()) / t;
+    }
 }
 
 
