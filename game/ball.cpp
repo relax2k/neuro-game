@@ -6,7 +6,7 @@
 Ball::Ball(Qt3DCore::QEntity * parent)
     : entity_   (new Qt3DCore::QEntity(parent))
     , transform_(new Qt3DCore::QTransform)
-    , xint_(std::nullopt)
+    , xint_     (std::nullopt)
 {
     assert(parent);
 
