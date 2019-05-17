@@ -80,6 +80,12 @@ QVector3D Ball::pos() const
 }
 
 
+QVector3D Ball::predictPos(Time dt)
+{
+    return pos() + v_ * dt + g_ * dt * dt / 2;
+}
+
+
 float Ball::radius() const
 {
     return radius_;
@@ -96,6 +102,7 @@ void Ball::reflect(QVector3D n)
 {
     assert(!n.isNull());
     v_ = v_ - 2 * (v_ * n) * n;
+    emit reflected(v_);
 }
 
 

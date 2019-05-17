@@ -27,7 +27,7 @@ public:
 
     void setPos(QVector3D pos);
     QVector3D pos() const;
-    QVector3D predictPos(Time dt); // TODO
+    QVector3D predictPos(Time dt);
 
     float radius() const;
     Time dt() const;
@@ -52,6 +52,7 @@ private slots:
 
 signals:
     void borderCrossed(bool crossedInto);
+    void reflected(QVector3D newV);
 
 private:
     const QVector3D g_ = QVector3D{ 0, -980, 0 } * Scene::SCALE;
