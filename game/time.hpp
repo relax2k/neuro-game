@@ -40,6 +40,8 @@ public:
     constexpr static Time dt = dt120;
 
 signals:
+    void absoluteTick();
+
     void fps120dt  (Time dt);
     void fps120time(Time time);
 

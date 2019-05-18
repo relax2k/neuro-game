@@ -74,6 +74,7 @@ void Clock::timerEvent(QTimerEvent * event)
     Q_UNUSED(event)
 
     absoluteTime_ += dt;
+    emit absoluteTick();
 
     if (skipTimerEvent()) {
         return;
