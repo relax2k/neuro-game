@@ -18,7 +18,11 @@ public:
     void setPos(QVector3D pos);
     QVector3D pos() const;
 
-    // TODO animation
+    /**
+     * @brief Runs racket animation and emmits animationFinished() at the end.
+     * @param endPos Where ball will be to return a ball.
+     * @param dt Time in which ball reach endPos.
+     */
     void runAnimation1(QVector3D endPos, Time dt);
 
 signals:
