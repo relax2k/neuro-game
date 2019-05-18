@@ -14,6 +14,18 @@ public:
 
     std::optional<QVector3D> intersects(Ball const * ball) const;
 
+public:
+    static constexpr float x1 = -6.86f;
+    static constexpr float x2 = -x1;
+    static constexpr float h  = 3.86f;
+    static constexpr float z1 = -3.81f;
+    static constexpr float z2 = -z1;
+
+    static constexpr float gridY1 = 1.0f;
+    static constexpr float gridY2 = 4.72f;
+    static constexpr float gridZ1 = -4.5f;
+    static constexpr float gridZ2 = -gridZ1;
+
 private:
     void initTable();
     void initGrid();

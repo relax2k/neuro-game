@@ -81,9 +81,7 @@ std::optional<QVector3D> Table::intersects(Ball const * ball) const
 
 std::optional<QVector3D> Table::intersectsWithTable(Ball const * ball) const
 {
-    const float tableHeight = 3.86f;
-
-    if (ball->pos().y() - ball->radius() <= tableHeight &&
+    if (ball->pos().y() - ball->radius() <= h &&
             inTable(ball->pos())) {
         return { QVector3D(0, 1, 0) };
     } else {
@@ -94,15 +92,12 @@ std::optional<QVector3D> Table::intersectsWithTable(Ball const * ball) const
 
 std::optional<QVector3D> Table::intersectsWithGrid(Ball const * ball) const
 {
-    const float y1 = 1.0f;
-    const float y2 = 4.72f;
-    const float z1 = 4.5f;
-    const float z2 = -z1;
-
     const auto pos = ball->pos();
 
-    if (pos.z() <= z1 && pos.z() >= z2 &&
-            pos.y() >= y1 && pos.y() <= y2 &&
+    assert(gridTransform_->translation().x() < 1e-5f);
+
+    if (pos.z() <= gridZ2 && pos.z() >= gridZ1 &&
+            pos.y() >= gridY2 && pos.y() <= gridY1 &&
             std::abs(pos.x()) <= ball->radius()) {
         if (pos.x() < 0) {
             return { QVector3D(-1, 0, 0) };
@@ -117,12 +112,8 @@ std::optional<QVector3D> Table::intersectsWithGrid(Ball const * ball) const
 
 bool Table::inTable(QVector3D pos) const
 {
-    const float z1 = 3.81f;
-    const float z2 = -z1;
-    const float x1 = 6.86f;
-    const float x2 = -x1;
-
-    return pos.x() >= x2 && pos.x() <= x1 && pos.z() >= z2 && pos.z() <= z1;
+    return pos.x() >= x1 && pos.x() <= x2 &&
+            pos.z() >= z1 && pos.z() <= z2;
 }
 
 
