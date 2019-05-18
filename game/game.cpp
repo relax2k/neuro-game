@@ -21,15 +21,12 @@ Game::Game(Qt3DCore::QEntity * root, Qt3DRender::QCamera * camera)
 void Game::gotoMainMenu()
 {
     assert(camera_);
-    camera_->setPosition({50, 50, 0});
+    camera_->setPosition({20, 8, 0});
     camera_->setViewCenter({0, 4, 0});
     camera_->setUpVector({0, 1, 0});
 
-    auto cc = new Qt3DExtras::QFirstPersonCameraController(this);
-    cc->setCamera(camera_);
-
     assert(!camFly_);
-//    camFly_ = std::make_unique<CamFlyingAround>(camera_, 20);
+    camFly_ = std::make_unique<CamFlyingAround>(camera_, 20);
 
     delRackets();
     delBall();
@@ -55,19 +52,20 @@ void Game::singlePlayer()
     ball_ = new Ball(rootEntity_);
     ball_->setPos({10.0, 5.0, -1.0});
     ball_->setGravity(true);
-    ball_->setV({0, 0, 0}, 1000ms); // TODO
+//    ball_->setV({0, 0, 0}, 1000ms);
+    ball_->setV({-100, 0, 0});
     ball_->setBorderCrossNotifier({{-3, 3}});
 
-    connect(ball_, &Ball::borderCrossed, [](bool crossedInto) {
-        if (crossedInto) {
-            Clock::instance()->setDeceleration(100);
-        } else {
-            Clock::instance()->setDeceleration(30);
-        }
-    });
-    connect(ball_, &Ball::destroyed, [] {
-        Clock::instance()->setDeceleration(100);
-    });
+//    connect(ball_, &Ball::borderCrossed, [](bool crossedInto) {
+//        if (crossedInto) {
+//            Clock::instance()->setDeceleration(100);
+//        } else {
+//            Clock::instance()->setDeceleration(30);
+//        }
+//    });
+//    connect(ball_, &Ball::destroyed, [] {
+//        Clock::instance()->setDeceleration(100);
+//    });
 
     new Collisions(ball_, scene_.get());
 }

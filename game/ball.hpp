@@ -19,7 +19,7 @@ public:
     ~Ball() override;
 
     void setV(QVector3D v);
-    void setV(QVector3D newPos, Time t);
+    void setV(QVector3D newPos, Time dt);
     QVector3D v() const;
 
     void setGravity(bool b);

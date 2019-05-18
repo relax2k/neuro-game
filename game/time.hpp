@@ -4,6 +4,12 @@
 
 
 using Time = std::chrono::milliseconds;
+using TimeSec = std::chrono::duration<float>;
+
+
+constexpr auto timeToSec(Time t) {
+    return std::chrono::duration_cast<TimeSec>(t).count();
+}
 
 
 class Clock final
@@ -18,8 +24,8 @@ public:
      * @brief Slows down timer.
      * @param percent of default frequency.
      */
-    void setDeceleration(size_t percent);
-    size_t deceleration() const;
+    void setDeceleration(int64_t percent);
+    int64_t deceleration() const;
 
     Time time() const;
 
@@ -51,6 +57,6 @@ private:
 private:
     Time absoluteTime_ = 0ms;
     Time time_ = 0ms;
-    size_t signalsInHundredTicks_ = 100;
+    int64_t signalsInHundredTicks_ = 100;
 };
 

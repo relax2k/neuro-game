@@ -15,16 +15,16 @@ Clock * Clock::instance()
 }
 
 
-void Clock::setDeceleration(size_t percent)
+void Clock::setDeceleration(int64_t percent)
 {
-    assert(percent <= 100);
+    assert(0 <= percent && percent <= 100);
     signalsInHundredTicks_ = percent;
 }
 
 
-size_t Clock::deceleration() const
+int64_t Clock::deceleration() const
 {
-    assert(signalsInHundredTicks_ <= 100);
+    assert(0 <= signalsInHundredTicks_ && signalsInHundredTicks_ <= 100);
     return signalsInHundredTicks_;
 }
 

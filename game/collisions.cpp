@@ -8,8 +8,8 @@ Collisions::Collisions(Ball * ball, Scene * scene)
     , scene_(scene)
 {
     assert(ball);
-    // It should not be connected to deleteLater, dtor will throw
-    // std::bad_alloc in disconnect.
+    // It should not be connected to deleteLater,
+    // dtor will throw std::bad_alloc in disconnect.
     connect(ball_, &Ball::destroyed, this, &Collisions::harakiri);
     connect(Clock::instance(), Clock::instance()->getTimerSignalDt(ball->dt()),
             this, &Collisions::update);
