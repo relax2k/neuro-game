@@ -8,6 +8,8 @@ Collisions::Collisions(Ball * ball, Scene * scene)
     , scene_(scene)
 {
     assert(ball);
+    assert(scene);
+
     // It should not be connected to deleteLater,
     // dtor will throw std::bad_alloc in disconnect.
     connect(ball_, &Ball::destroyed, this, &Collisions::harakiri);
