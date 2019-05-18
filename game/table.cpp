@@ -81,7 +81,7 @@ std::optional<QVector3D> Table::intersects(Ball const * ball) const
 
 std::optional<QVector3D> Table::intersectsWithTable(Ball const * ball) const
 {
-    if (abs(ball->pos().y() - ball->radius() - h) < 1e-3f &&
+    if (ball->pos().y() - ball->radius() <= h &&
             isInTable(ball->pos())) {
         return { QVector3D(0, 1, 0) };
     } else {
@@ -94,10 +94,10 @@ std::optional<QVector3D> Table::intersectsWithGrid(Ball const * ball) const
 {
     const auto pos = ball->pos();
 
-    assert(gridTransform_->translation().x() < 1e-5f);
+    assert(std::abs(gridTransform_->translation().x()) < 1e-5f);
 
     if (pos.z() <= gridZ2 && pos.z() >= gridZ1 &&
-            pos.y() >= gridY2 && pos.y() <= gridY1 &&
+            pos.y() >= gridY1 && pos.y() <= gridY2 &&
             std::abs(pos.x()) <= ball->radius()) {
         if (pos.x() < 0) {
             return { QVector3D(-1, 0, 0) };

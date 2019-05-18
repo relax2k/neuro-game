@@ -21,7 +21,7 @@ public:
     static constexpr float z1 = -3.81f;
     static constexpr float z2 = -z1;
 
-    static constexpr float gridY1 = 1.0f;
+    static constexpr float gridY1 = 0.0f;
     static constexpr float gridY2 = 4.72f;
     static constexpr float gridZ1 = -4.5f;
     static constexpr float gridZ2 = -gridZ1;
