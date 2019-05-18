@@ -8,8 +8,8 @@ class CamFlyingAround final
     Q_OBJECT
 
 public:
-    CamFlyingAround(Qt3DRender::QCamera * camera, float radious,
-                    int fps = 60, float dt = 1e-6f);
+    CamFlyingAround(Qt3DRender::QCamera * camera,
+                    float radious, float dt = 0.002f);
     void timerEvent(QTimerEvent * event) override;
 
 private:

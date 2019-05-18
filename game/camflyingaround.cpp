@@ -1,17 +1,16 @@
 #include "camflyingaround.hpp"
 
 
-CamFlyingAround::CamFlyingAround(Qt3DRender::QCamera * camera, float radious,
-                                 int fps, float dt)
+CamFlyingAround::CamFlyingAround(Qt3DRender::QCamera * camera,
+                                 float radious, float dt)
     : camera_(camera)
     , r_     (radious)
     , dt_    (dt)
 {
     assert(camera);
     assert(radious >= 0);
-    assert(fps > 0);
 
-    startTimer(1 / fps * 1000);
+    startTimer(15); // ~60 fps
 }
 
 
