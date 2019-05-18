@@ -32,7 +32,7 @@ private:
 
     std::optional<QVector3D> intersectsWithTable(Ball const * ball) const;
     std::optional<QVector3D> intersectsWithGrid (Ball const * ball) const;
-    bool inTable(QVector3D pos) const;
+    bool isInTable(QVector3D pos) const;
 
 private:
     Qt3DCore::QEntity    * tableEntity_;
