@@ -59,6 +59,7 @@ signals:
 
 private:
     const QVector3D g_ = QVector3D{0, -9.8f, 0};
+    const float radius_ = 0.1f;
 
     Qt3DCore::QEntity    * entity_;
     Qt3DCore::QTransform * transform_;
@@ -67,6 +68,5 @@ private:
     bool gravity_ = false;
     Interval xint_;
     bool inInterval_{};
-    float radius_ = 20;
     Time dt_ = Clock::dt60;
 };
