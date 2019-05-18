@@ -40,10 +40,13 @@ Clock::Timer Clock::getTimerSignalDt(Time dt)
     switch (dt.count()) {
     case dt120.count():
         return &Clock::fps120dt;
+
     case dt60.count():
         return &Clock::fps60dt;
+
     case dt30.count():
         return &Clock::fps30dt;
+
     default:
         qDebug() << "Clock: no such timer with dt = " << dt.count();
         return nullptr;
