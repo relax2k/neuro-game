@@ -56,10 +56,8 @@ void Ball::setV(QVector3D newPos, Time dt)
 
     if (gravity_) {
         v_ = (newPos - pos()) / dts - g_ * dts / 2;
-        qDebug() << "v = " << v_;
     } else {
         v_ = (newPos - pos()) / dts;
-        qDebug() << "v = " << v_;
     }
 }
 
