@@ -10,7 +10,7 @@ CamFlyingAround::CamFlyingAround(Qt3DRender::QCamera * camera,
     assert(camera);
     assert(radious >= 0);
 
-    startTimer(15); // ~60 fps
+    startTimer(15);
 }
 
 
