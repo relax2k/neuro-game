@@ -9,7 +9,7 @@ class Ball;
 class Racket;
 
 
-class Game
+class Game // No final to register Game in QML
         : public Qt3DCore::QEntity {
     Q_OBJECT
 
