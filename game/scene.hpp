@@ -15,7 +15,7 @@ public:
     Table const * table() const;
 
 public:
-    constexpr static const float SCALE = 0.005f;
+    constexpr static const float SCALE = 1;
 
 private:
     Qt3DCore::QEntity * createRoom()   const;

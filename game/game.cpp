@@ -21,9 +21,12 @@ Game::Game(Qt3DCore::QEntity * root, Qt3DRender::QCamera * camera)
 void Game::gotoMainMenu()
 {
     assert(camera_);
-    camera_->setPosition({20, 9, 0});
+    camera_->setPosition({-200, 90, 0});
     camera_->setViewCenter({0, 4, 0});
     camera_->setUpVector({0, 1, 0});
+
+    auto cc = new Qt3DExtras::QFirstPersonCameraController(this);
+    cc->setCamera(camera_);
 
     assert(!camFly_);
     camFly_ = std::make_unique<CamFlyingAround>(camera_, 20);
