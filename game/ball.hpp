@@ -50,8 +50,6 @@ private:
     void move();
     bool isInInterval() const;
 
-    float toSec(Time t) const;
-
 private slots:
     void update(Time dt);
 

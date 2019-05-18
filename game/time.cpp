@@ -15,16 +15,16 @@ Clock * Clock::instance()
 }
 
 
-void Clock::setDeceleration(int percent)
+void Clock::setDeceleration(size_t percent)
 {
-    assert(0 <= percent && percent <= 100);
+    assert(percent <= 100);
     signalsInHundredTicks_ = percent;
 }
 
 
-int Clock::deceleration() const
+size_t Clock::deceleration() const
 {
-    assert(0 <= signalsInHundredTicks_ && signalsInHundredTicks_ <= 100);
+    assert(signalsInHundredTicks_ <= 100);
     return signalsInHundredTicks_;
 }
 
@@ -37,15 +37,15 @@ Time Clock::time() const
 
 Clock::Timer Clock::getTimerSignalDt(Time dt)
 {
-    switch (dt) {
-    case dt120:
+    switch (dt.count()) {
+    case dt120.count():
         return &Clock::fps120dt;
-    case dt60:
+    case dt60.count():
         return &Clock::fps60dt;
-    case dt30:
+    case dt30.count():
         return &Clock::fps30dt;
     default:
-        qDebug() << "Clock: no such timer with dt = " << dt;
+        qDebug() << "Clock: no such timer with dt = " << dt.count();
         return nullptr;
     }
 }
@@ -59,7 +59,7 @@ Clock::Clock()
 
 bool Clock::skipTimerEvent() const
 {
-    if (absoluteTime_ % 10 < signalsInHundredTicks_ / 10) {
+    if (absoluteTime_.count() % 10 < signalsInHundredTicks_ / 10) {
         return false;
     }
     return true;
@@ -78,16 +78,16 @@ void Clock::timerEvent(QTimerEvent * event)
 
     time_ += dt;
 
-    assert(time_ % dt120 == 0);
+    assert(time_ % dt120 == 0ms);
     emit fps120dt(dt120);
     emit fps120time(time_);
 
-    if (time_ % dt60 == 0) {
+    if (time_ % dt60 == 0ms) {
         emit fps60dt(dt60);
         emit fps60time(time_);
     }
 
-    if (time_ % dt30 == 0) {
+    if (time_ % dt30 == 0ms) {
         emit fps30dt(dt30);
         emit fps30time(time_);
     }

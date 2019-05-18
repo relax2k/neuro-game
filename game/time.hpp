@@ -3,7 +3,8 @@
 #include "stdafx.hpp"
 
 
-using Time = int64_t;
+using Time = std::chrono::milliseconds;
+
 
 class Clock final
         : public QObject {
@@ -17,8 +18,8 @@ public:
      * @brief Slows down timer.
      * @param percent of default frequency.
      */
-    void setDeceleration(int percent);
-    int deceleration() const;
+    void setDeceleration(size_t percent);
+    size_t deceleration() const;
 
     Time time() const;
 
@@ -27,10 +28,10 @@ public:
 
 public:
     // Number is fps
-    static const Time dt120 = 8;
-    static const Time dt60  = 16;
-    static const Time dt30  = 32;
-    static const Time dt = dt120;
+    constexpr static Time dt120 = 8ms;
+    constexpr static Time dt60  = 16ms;
+    constexpr static Time dt30  = 32ms;
+    constexpr static Time dt = dt120;
 
 signals:
     void fps120dt  (Time dt);
@@ -48,8 +49,8 @@ private:
     void timerEvent(QTimerEvent * event) override;
 
 private:
-    Time absoluteTime_ = 0;
-    Time time_ = 0;
-    int signalsInHundredTicks_ = 100;
+    Time absoluteTime_ = 0ms;
+    Time time_ = 0ms;
+    size_t signalsInHundredTicks_ = 100;
 };
 

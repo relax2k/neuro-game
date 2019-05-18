@@ -50,13 +50,15 @@ void Ball::setV(QVector3D v)
 
 void Ball::setV(QVector3D newPos, Time t)
 {
-    assert(t > 0);
+    assert(t > 0ms);
+
+    auto tc = t.count();
 
     if (gravity_) {
-        v_ = (newPos - pos()) / t - g_ * t / 2;
+        v_ = (newPos - pos()) / tc - g_ * tc / 2;
         qDebug() << "v = " << v_;
     } else {
-        v_ = (newPos - pos()) / t;
+        v_ = (newPos - pos()) / tc;
         qDebug() << "v = " << v_;
     }
 }
@@ -95,7 +97,8 @@ QVector3D Ball::pos() const
 
 QVector3D Ball::predictPos(Time dt)
 {
-    return pos() + v_ * dt + g_ * dt * dt / 2;
+    auto dtc = dt.count();
+    return pos() + v_ * dtc + g_ * dtc * dtc / 2;
 }
 
 
@@ -133,13 +136,14 @@ void Ball::setBorderCrossNotifier(Interval l)
 void Ball::applyGravity()
 {
     assert(gravity_);
-    v_ += g_ * toSec(dt_);
+    v_ += g_ * std::chrono::duration_cast<std::chrono::seconds>(dt_).count();
 }
 
 
 void Ball::move()
 {
-    transform_->setTranslation(pos() + toSec(dt_) * v_);
+    transform_->setTranslation(pos() + std::chrono::duration_cast<
+                               std::chrono::seconds>(dt_).count() * v_);
 }
 
 
@@ -160,12 +164,6 @@ bool Ball::isInInterval() const
         return false;
     }
     return true;
-}
-
-
-float Ball::toSec(Time t) const
-{
-    return t / 1000.0f;
 }
 
 

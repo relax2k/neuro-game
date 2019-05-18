@@ -55,7 +55,7 @@ void Game::singlePlayer()
     ball_ = new Ball(rootEntity_);
     ball_->setPos({10.0, 5.0, -1.0});
     ball_->setGravity(true);
-    ball_->setV({0, 0, 0}, 1); // TODO
+    ball_->setV({0, 0, 0}, 1000ms); // TODO
     ball_->setBorderCrossNotifier({{-3, 3}});
 
     connect(ball_, &Ball::borderCrossed, [](bool crossedInto) {
