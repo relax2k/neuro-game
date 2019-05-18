@@ -30,6 +30,8 @@ void Collisions::update(Time dt)
     assert(ball_);
     assert(scene_);
 
+    qDebug() << ball_->pos();
+
     if (auto n = scene_->table()->intersects(ball_)) {
         ball_->reflect(n.value());
     }
