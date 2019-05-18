@@ -22,7 +22,6 @@ Ball::Ball(Qt3DCore::QEntity * parent)
     textures->setAmbient({100, 100, 100});
 
     assert(transform_);
-    transform_->setScale(Scene::SCALE);
     setPos({1, 5, 1});
 
     assert(entity_);
@@ -51,11 +50,14 @@ void Ball::setV(QVector3D v)
 
 void Ball::setV(QVector3D newPos, Time t)
 {
-    t /= 1000; // To secons
+    assert(t > 0);
+
     if (gravity_) {
         v_ = (newPos - pos()) / t - g_ * t / 2;
+        qDebug() << "v = " << v_;
     } else {
         v_ = (newPos - pos()) / t;
+        qDebug() << "v = " << v_;
     }
 }
 

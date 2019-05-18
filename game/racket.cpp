@@ -9,7 +9,6 @@ Racket::Racket(Qt3DCore::QEntity * parent)
 {
     assert(parent);
 
-    transform_->setScale(Scene::SCALE);
     transform_->setRotation(
                 QQuaternion::fromAxisAndAngle(QVector3D(0, 1, 0), 90));
 
@@ -47,21 +46,14 @@ QVector3D Racket::pos() const
 }
 
 
-void Racket::runAnimation1(QVector3D endPos, int time)
+void Racket::runAnimation1(QVector3D endPos, Time dt)
 {
     Q_UNUSED(endPos)
-    Q_UNUSED(time)
+    Q_UNUSED(dt)
 
     // TODO Racket::runAnimation1
-}
 
-
-void Racket::runAnimation2(QVector3D endPos, int time)
-{
-    Q_UNUSED(endPos)
-    Q_UNUSED(time)
-
-    // TODO Racket::runAnimation2
+    emit animationFinished();
 }
 
 

@@ -19,7 +19,7 @@ public:
     ~Ball() override;
 
     void setV(QVector3D v);
-    void setV(QVector3D newPos, Time t); // TODO
+    void setV(QVector3D newPos, Time t);
     QVector3D v() const;
 
     void setGravity(bool b);
@@ -60,7 +60,7 @@ signals:
     void reflected(QVector3D newV);
 
 private:
-    const QVector3D g_ = QVector3D{ 0, -980, 0 } * Scene::SCALE;
+    const QVector3D g_ = QVector3D{0, -9.8f, 0};
 
     Qt3DCore::QEntity    * entity_;
     Qt3DCore::QTransform * transform_;
@@ -69,6 +69,6 @@ private:
     bool gravity_ = false;
     Interval xint_;
     bool inInterval_{};
-    float radius_ = 20 * Scene::SCALE;
+    float radius_ = 20;
     Time dt_ = Clock::dt60;
 };

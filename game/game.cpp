@@ -21,7 +21,7 @@ Game::Game(Qt3DCore::QEntity * root, Qt3DRender::QCamera * camera)
 void Game::gotoMainMenu()
 {
     assert(camera_);
-    camera_->setPosition({-200, 90, 0});
+    camera_->setPosition({600, 1000, 0});
     camera_->setViewCenter({0, 4, 0});
     camera_->setUpVector({0, 1, 0});
 
@@ -29,7 +29,7 @@ void Game::gotoMainMenu()
     cc->setCamera(camera_);
 
     assert(!camFly_);
-    camFly_ = std::make_unique<CamFlyingAround>(camera_, 20);
+//    camFly_ = std::make_unique<CamFlyingAround>(camera_, 20);
 
     delRackets();
     delBall();
@@ -53,9 +53,9 @@ void Game::singlePlayer()
     racket2_->setPos({-5.0, 5.0, 0.0});
 
     ball_ = new Ball(rootEntity_);
-    ball_->setPos({9.0, 5.0, -1.0});
-    ball_->setV({0, 0, 0}, 6000); // TODO
+    ball_->setPos({10.0, 5.0, -1.0});
     ball_->setGravity(true);
+    ball_->setV({0, 0, 0}, 1); // TODO
     ball_->setBorderCrossNotifier({{-3, 3}});
 
     connect(ball_, &Ball::borderCrossed, [](bool crossedInto) {

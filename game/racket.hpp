@@ -1,6 +1,7 @@
 #pragma once
 
 #include "stdafx.hpp"
+#include "time.hpp"
 
 
 class Racket final
@@ -18,8 +19,10 @@ public:
     QVector3D pos() const;
 
     // TODO animation
-    void runAnimation1(QVector3D endPos, int time);
-    void runAnimation2(QVector3D endPos, int time);
+    void runAnimation1(QVector3D endPos, Time dt);
+
+signals:
+    void animationFinished();
 
 private:
     Qt3DCore::QEntity * entity_;

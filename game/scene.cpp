@@ -8,7 +8,7 @@ Scene::Scene(Qt3DCore::QEntity * root)
     : rootEntity_(root)
     , room_      (createRoom())
     , carpet_    (createCarpet())
-    , ceiling_   (createCeiling())
+//    , ceiling_   (createCeiling())
     , table_     (std::make_unique<Table>(rootEntity_))
     , light_     (createLights())
 {
@@ -26,7 +26,6 @@ Qt3DCore::QEntity * Scene::createRoom() const
 {
     auto * transform = new Qt3DCore::QTransform;
     transform->setTranslation({0, 0, 0});
-    transform->setScale(SCALE);
     transform->setRotation(
                 QQuaternion::fromAxisAndAngle(QVector3D(0, 1, 0), 90));
 
@@ -52,7 +51,6 @@ Qt3DCore::QEntity * Scene::createCeiling() const
 {
     auto * transform = new Qt3DCore::QTransform;
     transform->setTranslation({0, 0, 0});
-    transform->setScale(SCALE);
     transform->setRotation(
                 QQuaternion::fromAxisAndAngle(QVector3D(0, 1, 0), 90));
 
@@ -78,7 +76,6 @@ Qt3DCore::QEntity * Scene::createCarpet() const
 {
     auto * transform = new Qt3DCore::QTransform;
     transform->setTranslation({0, 0, 0});
-    transform->setScale(SCALE);
     transform->setRotation(
                 QQuaternion::fromAxisAndAngle(QVector3D(0, 1, 0), 90));
 
@@ -106,7 +103,6 @@ QVector<Qt3DCore::QEntity *> Scene::createLights() const
     auto * light2 = createLight({10, -10, 3});
     auto * light3 = createLight({-10, -10, 3});
     auto * light4 = createLight({-10, 10, 3});
-
 
     return { light1, light2, light3, light4 };
 }

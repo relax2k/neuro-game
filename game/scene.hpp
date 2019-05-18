@@ -14,9 +14,6 @@ public:
 
     Table const * table() const;
 
-public:
-    constexpr static const float SCALE = 1;
-
 private:
     Qt3DCore::QEntity * createRoom()   const;
     Qt3DCore::QEntity * createCarpet() const;
@@ -28,7 +25,7 @@ private:
     Qt3DCore::QEntity * rootEntity_;
     Qt3DCore::QEntity * room_;
     Qt3DCore::QEntity * carpet_;
-    Qt3DCore::QEntity * ceiling_;
+//    Qt3DCore::QEntity * ceiling_; // TODO change scale for sceiling model
     std::unique_ptr<Table> table_;
     QVector<Qt3DCore::QEntity *> light_;
 };

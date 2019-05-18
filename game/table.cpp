@@ -23,7 +23,6 @@ void Table::initTable()
     assert(tableTransform_);
 
     tableTransform_->setTranslation({0, 0, 0});
-    tableTransform_->setScale(Scene::SCALE);
     tableTransform_->setRotation(
                 QQuaternion::fromAxisAndAngle(QVector3D(0, 1, 0), 90));
 
@@ -49,7 +48,6 @@ void Table::initGrid()
     assert(gridTransform_);
 
     gridTransform_->setTranslation({0, 0, 0});
-    gridTransform_->setScale(Scene::SCALE);
     gridTransform_->setRotation(
                 QQuaternion::fromAxisAndAngle(QVector3D(0, 1, 0), 90));
 

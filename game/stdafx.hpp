@@ -6,6 +6,8 @@
 #include <memory>
 #include <vector>
 #include <optional>
+#include <chrono>
+using namespace std::chrono_literals;
 
 #include <QGuiApplication>
 
